@@ -73,6 +73,14 @@ export const site = {
     title: "Deep clean · Salmiya villa",
     length: "3:24 time-lapse",
   },
+  beforeAfter: {
+    cases: [
+      { label: "Living room", seed: "ba-living" },
+      { label: "Kitchen", seed: "ba-kitchen" },
+      { label: "Bathroom", seed: "ba-bath" },
+      { label: "Villa floor", seed: "ba-floor" },
+    ],
+  },
 };
 
 export const waLink = (text: string) =>

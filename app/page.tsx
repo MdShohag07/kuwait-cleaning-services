@@ -6,6 +6,7 @@ import { Process } from "@/components/Process";
 import { Footer } from "@/components/Footer";
 import { MobileHookBar } from "@/components/MobileHookBar";
 import { Video } from "@/components/Video";
+import { BeforeAfter } from "@/components/BeforeAfter";
 
 export default function Home() {
   return (
@@ -17,6 +18,7 @@ export default function Home() {
         <Why />
         <Process />
         <Video/>
+        <BeforeAfter />
       </main>
       <Footer />
       <MobileHookBar />
