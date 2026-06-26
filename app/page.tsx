@@ -7,6 +7,10 @@ import { Footer } from "@/components/Footer";
 import { MobileHookBar } from "@/components/MobileHookBar";
 import { Video } from "@/components/Video";
 import { BeforeAfter } from "@/components/BeforeAfter";
+import { Stats } from "@/components/Stats";
+import { Testimonials } from "@/components/Testimonials";
+import { FAQ } from "@/components/FAQ";
+import { BookingContact } from "@/components/BookingContact";
 
 export default function Home() {
   return (
@@ -19,6 +23,11 @@ export default function Home() {
         <Process />
         <Video/>
         <BeforeAfter />
+       <Stats />
+        <Testimonials />
+        <FAQ />
+        <BookingContact />
+
       </main>
       <Footer />
       <MobileHookBar />
