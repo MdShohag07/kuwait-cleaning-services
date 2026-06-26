@@ -1,0 +1,62 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bg: #edf1ef;
+  --color-surface: #ffffff;
+  --color-surface-2: #f4f7f5;
+  --color-ink: #13241b;
+  --color-muted: #566b60;
+  --color-muted-2: #8a988f;
+  --color-line: rgba(18, 40, 30, 0.12);
+  --color-line-soft: rgba(18, 40, 30, 0.07);
+  --color-acc: #0e6e4e;
+  --color-acc-2: #14906a;
+  --color-acc-deep: #094632;
+  --color-amber: #e0a23b;
+
+  --font-sans: var(--font-inter), system-ui, -apple-system, sans-serif;
+  --font-serif: var(--font-fraunces), Georgia, serif;
+
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-xl: 30px;
+}
+
+:root {
+  --grad: linear-gradient(135deg, #1fae80 0%, #0e6e4e 60%, #0a5538 100%);
+  --shadow-sm: 0 4px 18px rgba(18, 40, 30, 0.06);
+  --shadow: 0 18px 50px rgba(18, 40, 30, 0.1);
+  --shadow-lg: 0 34px 80px rgba(18, 40, 30, 0.16);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    background: var(--color-bg);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+  ::selection {
+    background: rgba(14, 110, 78, 0.14);
+    color: #094632;
+  }
+  /* room for the mobile call/WhatsApp bar */
+  @media (max-width: 768px) {
+    body {
+      padding-bottom: 72px;
+    }
+  }
+}
+
+@utility bg-grad {
+  background-image: var(--grad);
+}
+@utility shadow-soft {
+  box-shadow: var(--shadow-sm);
+}
+@utility shadow-card {
+  box-shadow: var(--shadow);
+}
