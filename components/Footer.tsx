@@ -61,6 +61,7 @@ export function Footer() {
             >
               {site.phoneDisplay}
             </a>
+            
             <a
               href={`mailto:${site.email}`}
               className="mb-3 block text-sm text-muted hover:text-ink"
