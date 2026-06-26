@@ -67,6 +67,12 @@ export const site = {
     { title: "We clean", text: "A vetted crew arrives on time with everything they need." },
     { title: "Enjoy & relax", text: "Walk into a space that gleams — guaranteed." },
   ],
+  video: {
+    youtubeId: "aqz-KE-bpKQ", // demo video — replace with your cleaning video's ID
+    thumb: "https://picsum.photos/seed/saffa-video/1280/720",
+    title: "Deep clean · Salmiya villa",
+    length: "3:24 time-lapse",
+  },
 };
 
 export const waLink = (text: string) =>

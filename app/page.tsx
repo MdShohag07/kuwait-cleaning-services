@@ -5,6 +5,7 @@ import { Why } from "@/components/Why";
 import { Process } from "@/components/Process";
 import { Footer } from "@/components/Footer";
 import { MobileHookBar } from "@/components/MobileHookBar";
+import { Video } from "@/components/Video";
 
 export default function Home() {
   return (
@@ -15,6 +16,7 @@ export default function Home() {
         <Services />
         <Why />
         <Process />
+        <Video/>
       </main>
       <Footer />
       <MobileHookBar />

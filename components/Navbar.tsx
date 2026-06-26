@@ -84,13 +84,13 @@ export function Navbar() {
               <WaIcon />
             </span>
           </a>
-
+{/* 
           <a
             href="#contact"
             className="rounded-full bg-grad px-6 py-3 text-sm font-semibold text-white shadow-[0_12px_30px_rgba(14,110,78,.26)] transition hover:-translate-y-0.5"
           >
             Book a service
-          </a>
+          </a> */}
         </div>
       </Container>
     </motion.nav>
