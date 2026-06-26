@@ -14,7 +14,7 @@ export const site = {
     { label: "FAQ", href: "#faq" },
   ],
   images: {
-    hero: "https://images.pexels.com/photos/36730122/pexels-photo-36730122.jpeg",
+    hero: "/images/hero/hero-living-room.jpg",
   },
   services: [
     {
@@ -23,7 +23,7 @@ export const site = {
       price: 18,
       unit: "per visit",
       duration: "2–3 hours",
-      image: "https://picsum.photos/seed/saffa-home/600/400",
+      image: "/images/services/home-cleaning.jpg",
       features: ["Floors, dusting & surfaces", "Kitchen wipe-down", "Bathroom sanitization"],
       featured: false,
     },
@@ -33,7 +33,7 @@ export const site = {
       price: 45,
       unit: "per property",
       duration: "4–6 hours",
-      image: "https://picsum.photos/seed/saffa-deep/600/400",
+      image: "/images/services/deep-cleaning.jpg",
       features: [
         "Full property deep clean",
         "Furniture & upholstery",
@@ -48,7 +48,7 @@ export const site = {
       price: 25,
       unit: "per visit",
       duration: "2–4 hours",
-      image: "https://picsum.photos/seed/saffa-office/600/400",
+      image: "/images/services/office-cleaning.jpg",
       features: ["Workspaces & desk sanitizing", "Trash removal & restrooms", "Floor maintenance"],
       featured: false,
     },
