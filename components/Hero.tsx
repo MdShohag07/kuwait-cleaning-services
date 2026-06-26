@@ -145,11 +145,16 @@ export function Hero() {
             </div>
 
             <motion.div
-              animate={{ y: [0, -12, 0] }}
-              transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute -left-4 top-6 flex items-center gap-3 rounded-2xl border border-white/60 bg-white/80 px-4 py-3 shadow-card backdrop-blur-md sm:-left-6"
+             animate={{ y: [0, -10, 0] }}
+              transition={{
+                duration: 4.5,
+                repeat: Infinity,
+                repeatType: "mirror",
+                ease: "easeInOut",
+              }}
+              className="shadow-card backdrop-blur-md will-change-transform sm:-left-6 absolute -left-4 top-6 flex items-center gap-3 rounded-2xl border border-white/60 bg-white/80 px-4 py-3 shadow-card backdrop-blur-md sm:-left-6"
             >
-              <span className="grid h-10 w-10 place-items-center rounded-xl bg-grad text-white">
+              <span className=" grid h-10 w-10 place-items-center rounded-xl bg-grad text-white">
                 <LeafIcon />
               </span>
               <div>
@@ -159,9 +164,14 @@ export function Hero() {
             </motion.div>
 
             <motion.div
-              animate={{ y: [0, -12, 0] }}
-              transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 0.6 }}
-              className="absolute -right-4 bottom-8 flex items-center gap-3 rounded-2xl border border-white/60 bg-white/80 px-4 py-3 shadow-card backdrop-blur-md sm:-right-6"
+              animate={{ y: [0, -10, 0] }}
+              transition={{
+                duration: 4.5,
+                repeat: Infinity,
+                repeatType: "mirror",
+                ease: "easeInOut",
+              }}
+              className="shadow-card backdrop-blur-md will-change-transform  absolute -right-4 bottom-8 flex items-center gap-3 rounded-2xl border border-white/60 bg-white/80 px-4 py-3 shadow-card backdrop-blur-md sm:-right-6"
             >
               <span className="grid h-10 w-10 place-items-center rounded-xl bg-grad text-white">
                 <ShieldIcon />
