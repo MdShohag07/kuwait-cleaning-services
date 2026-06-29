@@ -26,9 +26,10 @@ export default function Home() {
         <BeforeAfter />
        <Stats />
         <Testimonials />
+        <Blog />
         <FAQ />
         <BookingContact />
-        <Blog />
+        
 
       </main>
       <Footer />
