@@ -11,6 +11,7 @@ import { Stats } from "@/components/Stats";
 import { Testimonials } from "@/components/Testimonials";
 import { FAQ } from "@/components/FAQ";
 import { BookingContact } from "@/components/BookingContact";
+import { Blog } from "@/components/Blog";
 
 export default function Home() {
   return (
@@ -27,6 +28,7 @@ export default function Home() {
         <Testimonials />
         <FAQ />
         <BookingContact />
+        <Blog />
 
       </main>
       <Footer />

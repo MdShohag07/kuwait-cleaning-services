@@ -12,6 +12,7 @@ export const site = {
     { label: "Watch", href: "#video" },
     { label: "Results", href: "#results" },
     { label: "FAQ", href: "#faq" },
+    { label: "Blog", href: "/#blog" },
   ],
   images: {
     hero: "/images/hero/hero-living-room.jpg",
@@ -154,6 +155,65 @@ export const site = {
     ],
     times: ["09:00", "11:00", "13:00", "15:00", "17:00"],
   },
+  blogs: [
+    {
+      slug: "deep-clean-checklist",
+      title: "The 12-point deep clean checklist pros swear by",
+      excerpt: "What separates a surface tidy from a true deep clean — and how to spot the difference.",
+      category: "Guides",
+      readTime: "5 min read",
+      date: "Jun 2026",
+      cover: "https://picsum.photos/seed/blog-checklist/800/600",
+      body: [
+        "A deep clean isn't just a longer regular clean — it targets the build-up that everyday tidying never reaches: grout, behind appliances, vents, and the tops of doors and frames.",
+        "Start high and move low. Dust ceilings, fans, and light fixtures first so anything that falls is cleaned up later, not after you've already done the floors.",
+        "Kitchens and bathrooms deserve the most time. Degrease range hoods, descale taps and shower glass, and sanitize every high-touch surface — handles, switches, and remotes included.",
+        "Finish with floors, edges, and skirting boards. The corners are what people notice; a centre-of-the-room clean always looks unfinished.",
+      ],
+    },
+    {
+      slug: "eco-friendly-products",
+      title: "Why we only use eco-safe cleaning products",
+      excerpt: "Family- and pet-friendly doesn't mean weaker. Here's the science of a safer clean.",
+      category: "Health",
+      readTime: "4 min read",
+      date: "May 2026",
+      cover: "https://picsum.photos/seed/blog-eco/800/600",
+      body: [
+        "Harsh chemical cleaners leave residues and fumes that linger long after the crew leaves — a real concern in homes with children, pets, or anyone with sensitivities.",
+        "Modern plant-based formulas cut grease and kill germs just as effectively, without the respiratory irritation or the sharp chemical smell.",
+        "Eco-safe also means safer for your surfaces. Gentler products protect natural stone, wood, and finishes that aggressive cleaners slowly degrade.",
+      ],
+    },
+    {
+      slug: "move-out-deposit",
+      title: "Move-out cleaning: how to get your full deposit back",
+      excerpt: "Landlords inspect the same five things. Nail these and your deposit is safe.",
+      category: "Tips",
+      readTime: "6 min read",
+      date: "Apr 2026",
+      cover: "https://picsum.photos/seed/blog-moveout/800/600",
+      body: [
+        "Deposits are most often docked for things tenants overlook: oven interiors, limescale, wall marks, and grime in window tracks.",
+        "Document everything with photos before and after. A clear record resolves disputes faster than any argument.",
+        "When in doubt, a professional move-out clean costs a fraction of a withheld deposit — and comes with a guarantee that an afternoon of scrubbing never will.",
+      ],
+    },
+    {
+      slug: "cleaning-frequency",
+      title: "How often should you really deep clean your home?",
+      excerpt: "Weekly, monthly, seasonal — a simple schedule that actually fits real life.",
+      category: "Guides",
+      readTime: "3 min read",
+      date: "Mar 2026",
+      cover: "https://picsum.photos/seed/blog-frequency/800/600",
+      body: [
+        "Light maintenance cleaning works best weekly — surfaces, floors, and bathrooms stay on top of the mess before it becomes a project.",
+        "A deep clean every two to three months resets everything routine cleaning slowly misses, from grout to upholstery.",
+        "Homes with pets, kids, or heavy foot traffic should lean toward the shorter end of that range.",
+      ],
+    },
+  ],
 };
 
 export const waLink = (text: string) =>
