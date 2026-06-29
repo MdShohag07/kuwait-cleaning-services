@@ -33,7 +33,7 @@ export function Blog() {
   const touchStart = useRef<{ x: number; y: number } | null>(null);
 
   const go = (dir: number) =>
-    setActive((a) => Math.min(Math.max(a + dir, 0), blogs.length - 1));
+    setActive((a) => (a + dir + blogs.length) % blogs.length);
 
   // vertical mouse-wheel changes the active blog
   useEffect(() => {
@@ -54,11 +54,7 @@ export function Blog() {
   }, [active, blogs.length]);
 
   return (
-    <section
-      id="blog"
-      className="overflow-hidden py-28 text-white"
-      style={{ background: "linear-gradient(160deg,#0c2c20 0%,#08231a 55%,#06140f 100%)" }}
-    >
+    <section id="blog" className="overflow-hidden bg-white py-28">
       <Container>
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -67,15 +63,13 @@ export function Blog() {
           transition={{ duration: 0.7, ease }}
           className="mx-auto mb-12 max-w-2xl text-center"
         >
-          <span className="mb-5 inline-block text-xs font-semibold uppercase tracking-[0.26em] text-[#5fe0b0]">
+          <span className="mb-5 inline-block text-xs font-semibold uppercase tracking-[0.26em] text-acc">
             From the blog
           </span>
           <h2 className="font-serif text-[clamp(2.1rem,4.6vw,3.5rem)] leading-tight tracking-tight">
-            Cleaning tips &amp; <em className="italic text-[#5fe0b0]">guides</em>
+            Cleaning tips &amp; <em className="italic text-acc">guides</em>
           </h2>
-          <p className="mt-3 text-sm text-white/55">
-            Hover the cards and scroll your mouse wheel to browse.
-          </p>
+          <p  className="mt-3 text-sm text-muted"></p>
         </motion.div>
       </Container>
 
@@ -209,11 +203,10 @@ export function Blog() {
 
       {/* controls */}
       <div className="mt-8 flex items-center justify-center gap-4">
-        <button
+       <button
           onClick={() => go(-1)}
-          disabled={active === 0}
           aria-label="Previous"
-          className="grid h-11 w-11 place-items-center rounded-full border border-white/20 text-white transition enabled:hover:bg-white/10 disabled:opacity-30"
+          className="grid h-11 w-11 place-items-center rounded-full border border-line bg-surface text-ink shadow-soft transition hover:border-acc hover:text-acc"
         >
           <Arrow dir="left" />
         </button>
@@ -223,7 +216,7 @@ export function Blog() {
               key={b.slug}
               onClick={() => setActive(i)}
               aria-label={`Go to article ${i + 1}`}
-              className={`h-2.5 rounded-full transition-all ${i === active ? "w-6 bg-[#5fe0b0]" : "w-2.5 bg-white/25"}`}
+              className={`h-2.5 rounded-full transition-all ${i === active ? "w-6 bg-grad" : "w-2.5 bg-line"}`}
             />
           ))}
         </div>
@@ -231,7 +224,7 @@ export function Blog() {
           onClick={() => go(1)}
           disabled={active === blogs.length - 1}
           aria-label="Next"
-          className="grid h-11 w-11 place-items-center rounded-full border border-white/20 text-white transition enabled:hover:bg-white/10 disabled:opacity-30"
+          className="grid h-11 w-11 place-items-center rounded-full border border-line bg-surface text-ink shadow-soft transition enabled:hover:border-acc enabled:hover:text-acc disabled:opacity-40"
         >
           <Arrow />
         </button>

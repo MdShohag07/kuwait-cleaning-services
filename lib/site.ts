@@ -123,27 +123,28 @@ export const site = {
     { value: 50, suffix: "+", label: "Professional staff" },
   ],
   testimonials: [
-    {
-      quote:
-        "The crew was on time, discreet, and the villa has never looked this good. The window finish alone was worth it.",
-      name: "Noura Al-Sabah",
-      role: "Villa owner · Mishref",
-      seed: "rev-noura",
-    },
-    {
-      quote:
-        "We switched our office to Saffa's weekly plan. Same crew every time, spotless every time. Clients notice.",
-      name: "Yousef Khaled",
-      role: "Operations Lead · Kuwait City",
-      seed: "rev-yousef",
-    },
-    {
-      quote:
-        "Booked a move-out deep clean on short notice. Got my full deposit back. I won't use anyone else.",
-      name: "Fatima Rashed",
-      role: "Apartment · Salmiya",
-      seed: "rev-fatima",
-    },
+    { quote: "The crew was on time, discreet, and the villa has never looked this good. The window finish alone was worth it.", name: "Noura Al-Sabah", role: "Villa owner · Mishref", seed: "rev-noura" },
+    { quote: "We switched our office to the weekly plan. Same crew every time, spotless every time. Clients notice.", name: "Yousef Khaled", role: "Operations Lead · Kuwait City", seed: "rev-yousef" },
+    { quote: "Booked a move-out deep clean on short notice and got my full deposit back. I won't use anyone else.", name: "Fatima Rashed", role: "Apartment · Salmiya", seed: "rev-fatima" },
+    { quote: "Prompt, professional, and genuinely thorough. The kitchen looked brand new.", name: "Ahmad Al-Mutairi", role: "Homeowner · Jabriya", seed: "rev-ahmad" },
+    { quote: "Their eco-safe products matter to us with two toddlers at home. No harsh smell, spotless result.", name: "Dana Saleh", role: "Mother of two · Hawalli", seed: "rev-dana" },
+    { quote: "Best cleaning service in Kuwait, hands down. Reliable and detail-obsessed.", name: "Khalid Nasser", role: "Villa owner · Bayan", seed: "rev-khalid" },
+    { quote: "They handled our post-construction mess perfectly. Fine dust gone from everywhere.", name: "Sara Al-Otaibi", role: "Interior designer · Salwa", seed: "rev-sara" },
+    { quote: "Booking on WhatsApp took 30 seconds. Crew arrived exactly on time.", name: "Omar Faisal", role: "Tenant · Salmiya", seed: "rev-omar" },
+    { quote: "Our showroom has never looked sharper. Customers commented the same day.", name: "Layla Hassan", role: "Retail manager · Avenues", seed: "rev-layla" },
+    { quote: "Polite, careful with our furniture, and incredibly thorough. Highly recommend.", name: "Mohammed Ali", role: "Homeowner · Mangaf", seed: "rev-mohammed" },
+    { quote: "Switched from another company and the difference is night and day.", name: "Hessa Al-Rashed", role: "Villa owner · Mishref", seed: "rev-hessa" },
+    { quote: "The deep clean before Ramadan was flawless. Felt like a brand-new home.", name: "Abdullah Jaber", role: "Homeowner · Qortuba", seed: "rev-abdullah" },
+    { quote: "Spotless bathrooms, sparkling glass, and a fair price. What more could you want?", name: "Mariam Saad", role: "Apartment · Fintas", seed: "rev-mariam" },
+    { quote: "They re-cleaned one spot I pointed out without any fuss. That's real service.", name: "Talal Aziz", role: "Tenant · Mahboula", seed: "rev-talal" },
+    { quote: "Our weekly office clean keeps the whole team happier. Worth every fil.", name: "Reem Khalifa", role: "HR lead · Sharq", seed: "rev-reem" },
+    { quote: "Friendly, fast, and the floors actually shine now. Five stars.", name: "Nasser Bader", role: "Homeowner · Rumaithiya", seed: "rev-nasser" },
+    { quote: "I'm very particular and they still exceeded my expectations.", name: "Aisha Mansour", role: "Villa owner · Surra", seed: "rev-aisha" },
+    { quote: "Great communication from booking to finish. No surprises on the bill.", name: "Faisal Al-Harbi", role: "Tenant · Salmiya", seed: "rev-faisal" },
+    { quote: "Move-in clean was immaculate. We unpacked into a perfect home.", name: "Lulwa Saleh", role: "New resident · Jabriya", seed: "rev-lulwa" },
+    { quote: "The team is trustworthy — I'm comfortable leaving them with a key.", name: "Yaqoub Adel", role: "Villa owner · Bayan", seed: "rev-yaqoub" },
+    { quote: "Consistent quality month after month. That consistency is rare.", name: "Maha Tariq", role: "Apartment · Salwa", seed: "rev-maha" },
+    { quote: "Quick response, spotless result, lovely crew. Couldn't ask for more.", name: "Bader Al-Fadhli", role: "Homeowner · Adailiya", seed: "rev-bader" },
   ],
   faqs: [
     {
