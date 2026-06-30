@@ -60,3 +60,18 @@
 @utility shadow-card {
   box-shadow: var(--shadow);
 }
+
+
+/* Arabic typography + RTL fixes */
+html[lang="ar"] body,
+html[lang="ar"] .font-serif,
+html[lang="ar"] h1,
+html[lang="ar"] h2,
+html[lang="ar"] h3 {
+  font-family: var(--font-arabic), system-ui, sans-serif;
+}
+/* Arabic has no italics — keep emphasis upright */
+html[dir="rtl"] em,
+html[dir="rtl"] .italic {
+  font-style: normal;
+}
