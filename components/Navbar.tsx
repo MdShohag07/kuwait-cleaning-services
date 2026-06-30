@@ -73,9 +73,9 @@ export function Navbar() {
             <span className="absolute inset-0 animate-ping rounded-full bg-[#22c35e] opacity-40" />
             <span className="relative"><WaIcon /></span>
           </a>
-          <a href="#contact" className="rounded-full bg-grad px-6 py-3 text-sm font-semibold text-white shadow-[0_12px_30px_rgba(14,110,78,.26)] transition hover:-translate-y-0.5">
+          {/* <a href="#contact" className="rounded-full bg-grad px-6 py-3 text-sm font-semibold text-white shadow-[0_12px_30px_rgba(14,110,78,.26)] transition hover:-translate-y-0.5">
             {t.cta.book}
-          </a>
+          </a> */}
         </div>
       </Container>
     </motion.nav>
