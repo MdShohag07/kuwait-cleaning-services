@@ -1,9 +1,9 @@
 export const site = {
-  name: "Saffa", // placeholder brand — change to "Kuwait Cleaning Services" or your name anytime
+  name: "Clean Home Kuwait", // placeholder brand — change to "Kuwait Cleaning Services" or your name anytime
   tagline: "Premium Cleaning, Kuwait",
-  phone: "+96590000000", // demo — replace later
-  phoneDisplay: "+965 9000 0000",
-  whatsapp: "96590000000", // demo — replace later
+  phone: "+965 9874 6670", // demo — replace later
+  phoneDisplay: "+965 9874 6670",
+  whatsapp: "+96598746670", // demo — replace later
   email: "hello@saffa.kw",
   city: "Kuwait City",
   nav: [

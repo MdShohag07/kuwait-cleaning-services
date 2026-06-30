@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { site } from "@/lib/site";
@@ -15,6 +15,7 @@ const Arrow = ({ dir = "right" }: { dir?: "left" | "right" }) => (
   </svg>
 );
 
+// returns the three visible testimonials (left, center, right) around `active`
 function trio(active: number) {
   const n = POOL.length;
   return [(active - 1 + n) % n, active % n, (active + 1) % n];
@@ -27,16 +28,17 @@ function Card({ i, position }: { i: number; position: "side" | "center" }) {
     <AnimatePresence mode="wait">
       <motion.div
         key={i}
-        initial={{ opacity: 0, y: 18, scale: 0.97 }}
+        initial={{ opacity: 0, y: 20, scale: 0.96 }}
         animate={{ opacity: 1, y: 0, scale: 1 }}
-        exit={{ opacity: 0, y: -18, scale: 0.97 }}
-        transition={{ duration: 0.55, ease }}
+        exit={{ opacity: 0, y: -20, scale: 0.96 }}
+        transition={{ duration: 0.45, ease }}
         className={`relative flex flex-col items-center rounded-[28px] px-7 pb-8 pt-14 text-center ${
           center
             ? "bg-grad text-white shadow-card"
             : "border border-line-soft bg-surface text-ink shadow-soft"
         }`}
       >
+        {/* avatar overlapping the top */}
         <span
           className={`absolute -top-9 h-[72px] w-[72px] overflow-hidden rounded-full ring-4 ${
             center ? "ring-white/25" : "ring-surface"
@@ -55,7 +57,7 @@ function Card({ i, position }: { i: number; position: "side" | "center" }) {
           {t.quote}
         </p>
 
-        <div className="mt-4 flex gap-0.5 text-sm text-amber">★★★★★</div>
+        <div className={`mt-4 flex gap-0.5 text-sm ${center ? "text-amber" : "text-amber"}`}>★★★★★</div>
       </motion.div>
     </AnimatePresence>
   );
@@ -66,42 +68,12 @@ export function Testimonials() {
   const n = POOL.length;
   const [left, center, right] = trio(active);
 
-  const stageRef = useRef<HTMLDivElement>(null);
-  const lock = useRef(false);
-  const paused = useRef(false);
-
   const go = (d: number) => setActive((a) => (a + d + n) % n);
-
-  // auto-advance every 4.5s, pause on hover
-  useEffect(() => {
-    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reduce) return;
-    const t = setInterval(() => {
-      if (!paused.current) setActive((a) => (a + 1) % n);
-    }, 4500);
-    return () => clearInterval(t);
-  }, [n]);
-
-  // vertical wheel scroll changes the active review (only while hovering the cards)
-  useEffect(() => {
-    const el = stageRef.current;
-    if (!el) return;
-    const onWheel = (e: WheelEvent) => {
-      // small horizontal cushion so the page still scrolls naturally past the section
-      if (Math.abs(e.deltaY) < 8) return;
-      e.preventDefault();
-      if (lock.current) return;
-      lock.current = true;
-      setActive((a) => (a + (e.deltaY > 0 ? 1 : -1) + n) % n);
-      setTimeout(() => (lock.current = false), 500);
-    };
-    el.addEventListener("wheel", onWheel, { passive: false });
-    return () => el.removeEventListener("wheel", onWheel);
-  }, [n]);
 
   return (
     <section id="reviews" className="overflow-hidden bg-white py-28">
       <Container>
+        {/* header with arrows */}
         <div className="mx-auto mb-16 flex max-w-3xl items-center justify-center gap-6">
           <button
             onClick={() => go(-1)}
@@ -127,12 +99,8 @@ export function Testimonials() {
           </button>
         </div>
 
-        <div
-          ref={stageRef}
-          onMouseEnter={() => (paused.current = true)}
-          onMouseLeave={() => (paused.current = false)}
-          className="grid items-center gap-5 md:grid-cols-3 md:gap-6"
-        >
+        {/* three cards — center raised */}
+        <div className="grid items-center gap-5 md:grid-cols-3 md:gap-6">
           <div className="hidden md:block">
             <Card i={left} position="side" />
           </div>
@@ -144,6 +112,7 @@ export function Testimonials() {
           </div>
         </div>
 
+        {/* dots */}
         <div className="mt-12 flex justify-center gap-2.5">
           {POOL.map((t, i) => (
             <button
