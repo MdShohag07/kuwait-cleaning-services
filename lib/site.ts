@@ -1,3 +1,13 @@
+type ServiceItem = {
+  name: string;
+  subtitle?: string;
+  desc: string;
+  image: string;
+  features: string[];
+  note?: string;
+  featured: boolean;
+};
+
 export const site = {
   name: "Clean Home Kuwait", // placeholder brand — change to "Kuwait Cleaning Services" or your name anytime
   tagline: "Premium Cleaning, Kuwait",
@@ -19,42 +29,46 @@ export const site = {
   },
   services: [
     {
-      name: "Home Cleaning",
+      name: "House Cleaning",
+      subtitle: "1 flat / floor",
       desc: "Routine refresh for apartments & homes that always feels move-in ready.",
-      price: 18,
-      unit: "per visit",
-      duration: "2–3 hours",
       image: "/images/services/home-cleaning.jpg",
-      features: ["Floors, dusting & surfaces", "Kitchen wipe-down", "Bathroom sanitization"],
-      featured: false,
+      features: ["Toilet", "Kitchen", "Window", "Floor", "Sofa", "Carpet", "Stairs"],
+      note: "Excludes furniture",
+      featured: true,
     },
     {
-      name: "Deep Cleaning",
-      desc: "Top-to-bottom detail with furniture, windows & build-up nobody else reaches.",
-      price: 45,
-      unit: "per property",
-      duration: "4–6 hours",
-      image: "/images/services/deep-cleaning.jpg",
-      features: [
-        "Full property deep clean",
-        "Furniture & upholstery",
-        "Interior windows & tracks",
-        "Detailed sanitization",
-      ],
-      featured: true,
+      name: "Restaurant Cleaning",
+      desc: "Scheduled, food-safe cleaning that keeps a restaurant floor spotless service after service.",
+      // TODO: swap for a real restaurant photo once supplied
+      image: "/images/before-after/kitchen-after.jpg",
+      features: ["Glass", "Tiles / floor", "Toilet", "Cabinet", "Table", "Kitchen"],
+      featured: false,
     },
     {
       name: "Office Cleaning",
       desc: "Discreet, scheduled cleaning that keeps your workspace client-ready.",
-      price: 25,
-      unit: "per visit",
-      duration: "2–4 hours",
       image: "/images/services/office-cleaning.jpg",
-      features: ["Workspaces & desk sanitizing", "Trash removal & restrooms", "Floor maintenance"],
+      features: ["Glass", "Tiles / floor", "Toilet", "Cabinet", "Table", "Kitchen"],
       featured: false,
     },
-   
-  ],
+    {
+      name: "Mosque Cleaning",
+      desc: "Careful, respectful cleaning for prayer halls and wudu areas alike.",
+      // TODO: swap for a real mosque photo once supplied
+      image: "/images/before-after/floor-after.jpg",
+      features: ["Floor", "Toilet", "Glass", "Wudu / Ablution area"],
+      featured: false,
+    },
+    {
+      name: "Single Services",
+      desc: "Need just one thing done? Book a single item, no full package required.",
+      // TODO: swap for a real single-services photo once supplied
+      image: "/images/before-after/bathroom-after.jpg",
+      features: ["Sofa (per 1 set)", "Kitchen", "Toilet", "Single room / floor", "Swimming pool"],
+      featured: false,
+    },
+  ] satisfies ServiceItem[],
   whyPoints: [
     { icon: "shield", title: "Vetted professionals", text: "Background-checked, trained crews who treat your home like their own." },
     { icon: "leaf", title: "Eco-safe products", text: "Non-toxic, family- and pet-friendly supplies included in every visit." },

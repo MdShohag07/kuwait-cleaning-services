@@ -11,10 +11,9 @@ const CheckIcon = () => (
     <path d="M20 6L9 17l-5-5" />
   </svg>
 );
-const ClockIcon = () => (
-  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-    <circle cx="12" cy="12" r="9" />
-    <path d="M12 7v5l3 2" />
+const PhoneIcon = () => (
+  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.9a2 2 0 0 1-.4 2.1L8.1 9.9a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.4c.9.3 1.9.6 2.9.7a2 2 0 0 1 1.7 2z" />
   </svg>
 );
 
@@ -31,26 +30,26 @@ export function Services() {
           className="mx-auto mb-14 max-w-2xl text-center"
         >
           <span className="mb-5 inline-block text-xs font-semibold uppercase tracking-[0.26em] text-acc">
-            Services &amp; Pricing
+            Our Services
           </span>
           <h2 className="font-serif text-[clamp(2.1rem,4.6vw,3.5rem)] leading-tight tracking-tight">
-            Choose the <em className="italic text-acc">level of clean</em> you want
+            A clean plan for <em className="italic text-acc">every space</em>
           </h2>
           <p className="mt-4 text-muted">
-            Transparent KD pricing, no hidden fees. Every booking includes supplies,
-            insured crews, and our spotless re-clean promise.
+            Call us for a free quote tailored to your space. Every booking includes
+            supplies, insured crews, and our spotless re-clean promise.
           </p>
         </motion.div>
 
         {/* cards */}
-        <div className="grid gap-6 md:grid-cols-3">
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {site.services.map((s, i) => (
             <motion.article
               key={s.name}
               initial={{ opacity: 0, y: 36 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-40px" }}
-              transition={{ duration: 0.6, ease, delay: i * 0.12 }}
+              transition={{ duration: 0.6, ease, delay: i * 0.1 }}
               className={`group relative flex flex-col overflow-hidden rounded-[24px] bg-surface transition-all duration-300 hover:-translate-y-2 ${
                 s.featured
                   ? "border border-acc/25 shadow-card"
@@ -75,21 +74,14 @@ export function Services() {
 
               <div className="flex flex-1 flex-col p-7">
                 <h3 className="font-serif text-2xl">{s.name}</h3>
-                <p className="mt-1.5 min-h-[42px] text-sm text-muted">{s.desc}</p>
-
-                <div className="mt-3 flex items-baseline gap-1.5">
-                  <span className="font-serif text-[2.5rem] leading-none tracking-tight">
-                    {s.price}
+                {s.subtitle && (
+                  <span className="mt-1 inline-block text-xs font-semibold uppercase tracking-wider text-acc">
+                    {s.subtitle}
                   </span>
-                  <span className="font-semibold text-acc">KD</span>
-                </div>
-                <p className="text-xs text-muted-2">starting · {s.unit}</p>
+                )}
+                <p className="mt-1.5 text-sm text-muted">{s.desc}</p>
 
-                <span className="mt-3.5 inline-flex items-center gap-2 text-xs text-muted-2">
-                  <ClockIcon /> {s.duration}
-                </span>
-
-                <ul className="mt-4 flex flex-col gap-2.5">
+                <ul className="mt-4 flex flex-1 flex-col gap-2.5">
                   {s.features.map((f) => (
                     <li key={f} className="flex gap-2.5 text-sm text-muted">
                       <CheckIcon /> {f}
@@ -97,16 +89,18 @@ export function Services() {
                   ))}
                 </ul>
 
+                {s.note && <p className="mt-3 text-xs text-muted-2">NB: {s.note}</p>}
+
                 <a
-                  href="#contact"
-                  className={`inline-flex w-full items-center justify-center rounded-full px-6 py-3 text-sm font-semibold transition hover:-translate-y-0.5 ${
+                  href={`tel:${site.phone}`}
+                  className={`inline-flex w-full items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold transition hover:-translate-y-0.5 ${
                     s.featured
                       ? "bg-grad text-white shadow-[0_12px_30px_rgba(14,110,78,.26)]"
                       : "border border-line bg-surface text-ink hover:border-acc"
                   }`}
                   style={{ marginTop: "1.5rem" }}
                 >
-                  Book {s.name.toLowerCase()}
+                  <PhoneIcon /> Call to book
                 </a>
               </div>
             </motion.article>
@@ -114,11 +108,11 @@ export function Services() {
         </div>
 
         <p className="mt-8 text-center text-sm text-muted">
-          Also available: Villa &amp; Apartment · Move-In / Move-Out · Commercial ·
-          Post-Construction —{" "}
-          <a href="#contact" className="font-semibold text-acc">
-            request a tailored quote →
-          </a>
+          Not sure which plan fits your space? Call{" "}
+          <a href={`tel:${site.phone}`} className="font-semibold text-acc">
+            {site.phoneDisplay}
+          </a>{" "}
+          and we&apos;ll help you choose.
         </p>
       </Container>
     </section>
