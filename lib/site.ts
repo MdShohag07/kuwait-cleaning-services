@@ -152,14 +152,6 @@ export const site = {
     },
   ],
   booking: {
-    services: [
-      { label: "Home Cleaning", base: 18 },
-      { label: "Office Cleaning", base: 25 },
-      { label: "Deep Cleaning", base: 45 },
-      { label: "Move-In / Move-Out", base: 35 },
-      { label: "Villa Cleaning", base: 55 },
-      { label: "Post-Construction", base: 60 },
-    ],
     sizes: [
       { label: "Studio / 1 room", mult: 1 },
       { label: "2–3 rooms", mult: 1.4 },

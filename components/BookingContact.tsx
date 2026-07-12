@@ -35,16 +35,12 @@ export function BookingContact() {
   const [date, setDate] = useState("");
   const [time, setTime] = useState(b.times[0]);
 
-  const total = Math.round(
-    b.services[service].base * b.sizes[size].mult * b.freqs[freq].mult
-  );
-
   const bookingWa = () => {
     const msg =
-      `Hi ${site.name}! I'd like to book: ${b.services[service].label}` +
+      `Hi ${site.name}! I'd like to book: ${site.services[service].name}` +
       ` | Size: ${b.sizes[size].label}` +
       ` | ${date || "flexible date"} at ${time}` +
-      ` | ${b.freqs[freq].label} | Estimate: ${total} KD`;
+      ` | ${b.freqs[freq].label}`;
     return waLink(msg);
   };
 
@@ -75,17 +71,17 @@ export function BookingContact() {
             transition={{ duration: 0.7, ease }}
             className="rounded-[30px] border border-line-soft bg-surface p-9 shadow-card"
           >
-            <h3 className="font-serif text-2xl">Get your instant estimate</h3>
+            <h3 className="font-serif text-2xl">Book in a few taps</h3>
             <p className="mb-6 mt-1 text-sm text-muted">
-              Pick your details — we&apos;ll show a live price and send it straight
-              to WhatsApp.
+              Pick your details and send it straight to WhatsApp — we&apos;ll
+              confirm your crew and price there.
             </p>
 
             <label className="mb-2 block text-xs text-muted">Service</label>
             <select className={fieldCls} value={service} onChange={(e) => setService(Number(e.target.value))}>
-              {b.services.map((s, i) => (
-                <option key={s.label} value={i}>
-                  {s.label} — from {s.base} KD
+              {site.services.map((s, i) => (
+                <option key={s.name} value={i}>
+                  {s.name}
                 </option>
               ))}
             </select>
@@ -125,16 +121,11 @@ export function BookingContact() {
               ))}
             </select>
 
-            <div className="my-5 flex items-center justify-between rounded-[16px] border border-acc/20 bg-acc/[.06] px-5 py-4">
-              <span className="text-sm text-muted">Estimated total</span>
-              <b className="font-serif text-3xl text-acc-deep">{total} KD</b>
-            </div>
-
-            
-              <a href={bookingWa()}
+            <a
+              href={bookingWa()}
               target="_blank"
               rel="noopener"
-              className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-grad px-6 py-3.5 font-semibold text-white shadow-[0_12px_30px_rgba(14,110,78,.26)] transition hover:-translate-y-0.5"
+              className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full bg-grad px-6 py-3.5 font-semibold text-white shadow-[0_12px_30px_rgba(14,110,78,.26)] transition hover:-translate-y-0.5"
             >
               Confirm on WhatsApp
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
