@@ -31,8 +31,7 @@ export function Video() {
             A clean you can <em className="italic text-acc">watch happen</em>
           </h2>
           <p className="mt-4 text-muted">
-            Press play for a time-lapse of a real {site.name} deep clean, start to
-            gleaming finish.
+            Press play to see our cleaning standard for yourself.
           </p>
         </motion.div>
 

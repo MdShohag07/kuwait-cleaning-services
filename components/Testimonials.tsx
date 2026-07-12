@@ -1,9 +1,12 @@
 ﻿"use client";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { site } from "@/lib/site";
 import { Container } from "./Container";
+
+const AUTOPLAY_MS = 2800;
+const RESUME_AFTER_MS = 6000;
 
 const ease = [0.16, 1, 0.3, 1] as const;
 const POOL = site.testimonials;
@@ -65,10 +68,40 @@ function Card({ i, position }: { i: number; position: "side" | "center" }) {
 
 export function Testimonials() {
   const [active, setActive] = useState(0);
+  const [hovering, setHovering] = useState(false);
+  const [paused, setPaused] = useState(false);
   const n = POOL.length;
   const [left, center, right] = trio(active);
+  const resumeTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  const go = (d: number) => setActive((a) => (a + d + n) % n);
+  const pauseThenResume = () => {
+    setPaused(true);
+    if (resumeTimeout.current) clearTimeout(resumeTimeout.current);
+    resumeTimeout.current = setTimeout(() => setPaused(false), RESUME_AFTER_MS);
+  };
+
+  const go = (d: number) => {
+    setActive((a) => (a + d + n) % n);
+    pauseThenResume();
+  };
+  const goTo = (i: number) => {
+    setActive(i);
+    pauseThenResume();
+  };
+
+  // auto-advance every ~2.8s; pauses on hover/manual navigation and honors reduced-motion
+  useEffect(() => {
+    if (hovering || paused) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const id = setInterval(() => setActive((a) => (a + 1) % n), AUTOPLAY_MS);
+    return () => clearInterval(id);
+  }, [hovering, paused, n]);
+
+  useEffect(() => {
+    return () => {
+      if (resumeTimeout.current) clearTimeout(resumeTimeout.current);
+    };
+  }, []);
 
   return (
     <section id="reviews" className="overflow-hidden bg-surface py-28">
@@ -100,7 +133,11 @@ export function Testimonials() {
         </div>
 
         {/* three cards — center raised */}
-        <div className="grid items-center gap-5 md:grid-cols-3 md:gap-6">
+        <div
+          className="grid items-center gap-5 md:grid-cols-3 md:gap-6"
+          onMouseEnter={() => setHovering(true)}
+          onMouseLeave={() => setHovering(false)}
+        >
           <div className="hidden md:block">
             <Card i={left} position="side" />
           </div>
@@ -125,7 +162,7 @@ export function Testimonials() {
             {POOL.map((t, i) => (
               <button
                 key={t.seed}
-                onClick={() => setActive(i)}
+                onClick={() => goTo(i)}
                 aria-label={`Go to review ${i + 1}`}
                 className={`h-2.5 rounded-full transition-all ${i === active ? "w-6 bg-grad" : "w-2.5 bg-line"}`}
               />

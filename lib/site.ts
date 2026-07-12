@@ -84,10 +84,10 @@ export const site = {
     { title: "Enjoy & relax", text: "Walk into a space that gleams — guaranteed." },
   ],
   video: {
-    youtubeId: "aqz-KE-bpKQ", // demo video — replace with your cleaning video's ID
-    thumb: "https://picsum.photos/seed/saffa-video/1280/720",
-    title: "Deep clean · Salmiya villa",
-    length: "3:24 time-lapse",
+    youtubeId: "AkSwAc7ApNc",
+    thumb: "https://i.ytimg.com/vi/AkSwAc7ApNc/maxresdefault.jpg",
+    title: "See our cleaning crew in action",
+    length: "Watch now",
   },
   beforeAfter: {
     cases: [
@@ -181,7 +181,7 @@ export const site = {
       category: "Guides",
       readTime: "5 min",
       date: "Jun 2026",
-      cover: "https://picsum.photos/seed/blog-checklist/900/700",
+      cover: "/images/services/deep-cleaning.jpg",
       author: { name: "Layla Haddad", role: "Lead Specialist", linkedin: "https://linkedin.com/in/example", avatar: "https://picsum.photos/seed/author-layla/100/100" },
       body: [
         "A deep clean isn't just a longer regular clean — it targets the build-up everyday tidying never reaches: grout, behind appliances, vents, and the tops of doors and frames.",
@@ -197,7 +197,7 @@ export const site = {
       category: "Health",
       readTime: "4 min",
       date: "May 2026",
-      cover: "https://picsum.photos/seed/blog-eco/900/700",
+      cover: "/images/services/home-cleaning.jpg",
       author: { name: "Omar Saleh", role: "Operations Manager", linkedin: "https://linkedin.com/in/example", avatar: "https://picsum.photos/seed/author-omar/100/100" },
       body: [
         "Harsh chemical cleaners leave residues and fumes that linger long after the crew leaves — a real concern in homes with children, pets, or anyone with sensitivities.",
@@ -212,7 +212,7 @@ export const site = {
       category: "Tips",
       readTime: "6 min",
       date: "Apr 2026",
-      cover: "https://picsum.photos/seed/blog-moveout/900/700",
+      cover: "/images/before-after/bedroom-after.jpg",
       author: { name: "Fatima Rashed", role: "Customer Success", linkedin: "https://linkedin.com/in/example", avatar: "https://picsum.photos/seed/author-fatima/100/100" },
       body: [
         "Deposits are most often docked for things tenants overlook: oven interiors, limescale, wall marks, and grime in window tracks.",
@@ -227,7 +227,7 @@ export const site = {
       category: "Guides",
       readTime: "3 min",
       date: "Mar 2026",
-      cover: "https://picsum.photos/seed/blog-frequency/900/700",
+      cover: "/images/before-after/floor-after.jpg",
       author: { name: "Layla Haddad", role: "Lead Specialist", linkedin: "https://linkedin.com/in/example", avatar: "https://picsum.photos/seed/author-layla/100/100" },
       body: [
         "Light maintenance cleaning works best weekly — surfaces, floors, and bathrooms stay on top of mess before it becomes a project.",
@@ -242,7 +242,7 @@ export const site = {
       category: "Tips",
       readTime: "4 min",
       date: "Feb 2026",
-      cover: "https://picsum.photos/seed/blog-kitchen/900/700",
+      cover: "/images/before-after/kitchen-after.jpg",
       author: { name: "Yousef Khaled", role: "Field Supervisor", linkedin: "https://linkedin.com/in/example", avatar: "https://picsum.photos/seed/author-yousef/100/100" },
       body: [
         "Grease bonds with dust over time, so the longer it sits the harder it clings. Warm water and a degreaser loosen it far better than scrubbing dry.",
@@ -257,7 +257,7 @@ export const site = {
       category: "Tips",
       readTime: "4 min",
       date: "Feb 2026",
-      cover: "https://picsum.photos/seed/blog-bathroom/900/700",
+      cover: "/images/before-after/bathroom-after.jpg",
       author: { name: "Fatima Rashed", role: "Customer Success", linkedin: "https://linkedin.com/in/example", avatar: "https://picsum.photos/seed/author-fatima/100/100" },
       body: [
         "Limescale is a mineral deposit left by hard water. It builds on taps, glass, and tiles, and it only gets tougher the longer it's left.",
@@ -272,7 +272,7 @@ export const site = {
       category: "Workplace",
       readTime: "5 min",
       date: "Jan 2026",
-      cover: "https://picsum.photos/seed/blog-office/900/700",
+      cover: "/images/services/office-cleaning.jpg",
       author: { name: "Omar Saleh", role: "Operations Manager", linkedin: "https://linkedin.com/in/example", avatar: "https://picsum.photos/seed/author-omar/100/100" },
       body: [
         "Keyboards, phones, and door handles carry more bacteria than most surfaces in a building, yet they're rarely part of a routine wipe-down.",
@@ -287,7 +287,7 @@ export const site = {
       category: "Guides",
       readTime: "7 min",
       date: "Jan 2026",
-      cover: "https://picsum.photos/seed/blog-construction/900/700",
+      cover: "/images/before-after/floor-before.jpg",
       author: { name: "Yousef Khaled", role: "Field Supervisor", linkedin: "https://linkedin.com/in/example", avatar: "https://picsum.photos/seed/author-yousef/100/100" },
       body: [
         "Construction dust is ultra-fine and settles into every gap. It needs a vacuum with a proper filter, not just a cloth that pushes it around.",
@@ -302,7 +302,7 @@ export const site = {
       category: "Health",
       readTime: "4 min",
       date: "Dec 2025",
-      cover: "https://picsum.photos/seed/blog-pets/900/700",
+      cover: "/images/services/home-cleaning.jpg",
       author: { name: "Layla Haddad", role: "Lead Specialist", linkedin: "https://linkedin.com/in/example", avatar: "https://picsum.photos/seed/author-layla/100/100" },
       body: [
         "Pet hair clings to fabric and floats into vents. Frequent vacuuming with the right attachments keeps it from building up everywhere.",
@@ -317,7 +317,7 @@ export const site = {
       category: "Seasonal",
       readTime: "5 min",
       date: "Dec 2025",
-      cover: "https://picsum.photos/seed/blog-ramadan/900/700",
+      cover: "/images/before-after/living-room-after.jpg",
       author: { name: "Fatima Rashed", role: "Customer Success", linkedin: "https://linkedin.com/in/example", avatar: "https://picsum.photos/seed/author-fatima/100/100" },
       body: [
         "Start a week or two ahead so the work feels calm, not rushed. Tackle one room a day rather than everything at once.",
