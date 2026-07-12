@@ -24,7 +24,7 @@ export function MobileHookBar() {
         <PhoneIcon /> Call now
       </a>
       
-      <a  href={waLink("Hi Saffa, I'd like to book a cleaning.")}
+      <a  href={waLink("Hi, I'd like to book a cleaning.")}
         target="_blank"
         rel="noopener"
         className="flex flex-1 items-center justify-center gap-2 rounded-2xl bg-[#22c35e] py-3 font-semibold text-white"

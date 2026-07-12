@@ -46,7 +46,7 @@ export function Video() {
             <iframe
               className="absolute inset-0 h-full w-full"
               src={`https://www.youtube.com/embed/${v.youtubeId}?autoplay=1&rel=0`}
-              title="Saffa cleaning video"
+              title={`${site.name} cleaning video`}
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
             />

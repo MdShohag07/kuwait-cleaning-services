@@ -14,11 +14,11 @@ export const site = {
   phone: "+965 9874 6670", // demo — replace later
   phoneDisplay: "+965 9874 6670",
   whatsapp: "+96598746670", // demo — replace later
-  email: "hello@saffa.kw",
+  email: "hello@cleanhomekuwait.com",
   city: "Kuwait City",
   nav: [
     { label: "Services", href: "#services" },
-    { label: "Why Saffa", href: "#why" },
+    { label: "Why Us", href: "#why" },
     { label: "Watch", href: "#video" },
     { label: "Results", href: "#results" },
     { label: "FAQ", href: "#faq" },

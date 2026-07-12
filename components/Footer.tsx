@@ -1,7 +1,8 @@
+import Image from "next/image";
 import { site } from "@/lib/site";
 import { Container } from "./Container";
 
-function FCol({ title, links }: { title: string; links: string[] }) {
+function FCol({ title, links }: { title: string; links: { label: string; href: string }[] }) {
   return (
     <div>
       <h5 className="mb-4 text-xs font-semibold uppercase tracking-wider text-acc">
@@ -9,11 +10,11 @@ function FCol({ title, links }: { title: string; links: string[] }) {
       </h5>
       {links.map((l) => (
         <a
-          key={l}
-          href="#"
+          key={l.label}
+          href={l.href}
           className="mb-3 block text-sm text-muted transition hover:text-ink"
         >
-          {l}
+          {l.label}
         </a>
       ))}
     </div>
@@ -26,11 +27,8 @@ export function Footer() {
       <Container>
         <div className="mb-12 grid gap-10 sm:grid-cols-2 md:grid-cols-[1.4fr_1fr_1fr_1fr]">
           <div>
-            <div className="flex items-center gap-3 text-lg font-semibold">
-              <span className="grid h-9 w-9 place-items-center rounded-[10px] bg-grad font-serif text-white">
-                S
-              </span>
-              {site.name}
+            <div>
+              <Image src="/images/footerlogo.png" alt={site.name} width={640} height={640} className="-ml-2 h-32 w-32 object-contain sm:h-36 sm:w-36" />
             </div>
             <p className="mt-4 max-w-[280px] text-sm text-muted">
               Premium cleaning for Kuwait&apos;s homes, villas, and offices. A
@@ -40,16 +38,21 @@ export function Footer() {
           <FCol
             title="Services"
             links={[
-              "Home Cleaning",
-              "Office Cleaning",
-              "Deep Cleaning",
-              "Move-In / Out",
-              "Post-Construction",
+              { label: "Home Cleaning", href: "/#services" },
+              { label: "Office Cleaning", href: "/#services" },
+              { label: "Deep Cleaning", href: "/#services" },
+              { label: "Move-In / Out", href: "/#services" },
+              { label: "Post-Construction", href: "/#services" },
             ]}
           />
           <FCol
             title="Company"
-            links={["Why Saffa", "How it works", "Results", "FAQ"]}
+            links={[
+              { label: "Why Us", href: "/#why" },
+              { label: "How it works", href: "/#process" },
+              { label: "Results", href: "/#results" },
+              { label: "FAQ", href: "/#faq" },
+            ]}
           />
           <div>
             <h5 className="mb-4 text-xs font-semibold uppercase tracking-wider text-acc">

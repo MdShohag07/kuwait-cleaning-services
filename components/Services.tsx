@@ -93,11 +93,7 @@ export function Services() {
 
                 <a
                   href={`tel:${site.phone}`}
-                  className={`mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold transition hover:-translate-y-0.5 ${
-                    s.featured
-                      ? "bg-grad text-white shadow-[0_12px_30px_rgba(14,110,78,.26)]"
-                      : "border border-line bg-surface text-ink hover:border-acc"
-                  }`}
+                  className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full bg-grad px-6 py-3 text-sm font-semibold text-white shadow-[0_12px_30px_rgba(14,110,78,.26)] transition hover:-translate-y-0.5"
                 >
                   <PhoneIcon /> Call to book
                 </a>

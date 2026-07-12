@@ -9,16 +9,16 @@ const fraunces = Fraunces({ subsets: ["latin"], weight: ["300", "400", "500", "6
 const cairo = Cairo({ subsets: ["arabic", "latin"], variable: "--font-arabic", display: "swap" });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://saffa.kw"),
+  metadataBase: new URL("https://cleanhomekuwait.com"),
   title: `${site.name} | Premium Cleaning Services in Kuwait`,
   description: "White-glove cleaning across Kuwait — homes, villas and offices. Vetted crews, eco-safe products, transparent KD pricing and a spotless guarantee.",
-  openGraph: { title: `${site.name} | Premium Cleaning, Kuwait`, description: "White-glove cleaning across Kuwait. Book in 60 seconds.", url: "https://saffa.kw", type: "website", locale: "en_KW" },
+  openGraph: { title: `${site.name} | Premium Cleaning, Kuwait`, description: "White-glove cleaning across Kuwait. Book in 60 seconds.", url: "https://cleanhomekuwait.com", type: "website", locale: "en_KW" },
   robots: { index: true, follow: true },
 };
 
 const jsonLd = {
   "@context": "https://schema.org", "@type": "LocalBusiness",
-  name: "Saffa Cleaning Services", url: "https://saffa.kw", telephone: site.phone, priceRange: "KD",
+  name: site.name, url: "https://cleanhomekuwait.com", telephone: site.phone, priceRange: "KD",
   address: { "@type": "PostalAddress", addressLocality: "Kuwait City", addressCountry: "KW" },
   areaServed: ["Kuwait City", "Hawalli", "Salmiya", "Mishref", "Jabriya", "Ahmadi"],
   aggregateRating: { "@type": "AggregateRating", ratingValue: "4.9", reviewCount: "600" },

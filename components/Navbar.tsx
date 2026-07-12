@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
 import Link from "next/link";
 import { site, waLink } from "@/lib/site";
 import { useLang } from "@/lib/i18n";
@@ -19,11 +20,11 @@ const WaIcon = () => (
 );
 
 const links = [
-  { key: "services", href: "#services" },
-  { key: "why", href: "#why" },
-  { key: "watch", href: "#video" },
-  { key: "results", href: "#results" },
-  { key: "faq", href: "#faq" },
+  { key: "services", href: "/#services" },
+  { key: "why", href: "/#why" },
+  { key: "watch", href: "/#video" },
+  { key: "results", href: "/#results" },
+  { key: "faq", href: "/#faq" },
   { key: "blog", href: "/blog" },
 ] as const;
 
@@ -60,10 +61,9 @@ export function Navbar() {
         scrolled || open ? "border-b border-line-soft bg-surface/80 shadow-soft backdrop-blur-lg" : ""
       }`}
     >
-      <Container className="flex h-[72px] items-center justify-between gap-3 sm:h-[76px]">
-        <Link href="#home" onClick={() => setOpen(false)} className="flex min-w-0 items-center gap-2.5 text-base font-semibold sm:gap-3 sm:text-lg">
-          <span className="grid h-9 w-9 shrink-0 place-items-center rounded-[10px] bg-grad font-serif text-white shadow-[0_8px_22px_rgba(14,110,78,.28)]">S</span>
-          <span className="truncate">{site.name}</span>
+      <Container className="flex h-20 items-center justify-between gap-3 sm:h-24">
+        <Link href="/#home" onClick={() => setOpen(false)} className="flex min-w-0 items-center">
+          <Image src="/images/footerlogo.png" alt={site.name} width={480} height={480} className="h-16 w-16 shrink-0 object-contain sm:h-20 sm:w-20" priority />
         </Link>
 
         <div className="hidden items-center gap-6 lg:flex xl:gap-8">
@@ -83,7 +83,7 @@ export function Navbar() {
             </span>
             <span className="grid h-[38px] w-[38px] place-items-center rounded-full bg-grad text-white"><PhoneIcon /></span>
           </a>
-          <a href={waLink("Hi Saffa, I'd like to book a cleaning service.")} target="_blank" rel="noopener" aria-label={t.cta.whatsapp} className="relative hidden h-11 w-11 place-items-center rounded-full bg-[#22c35e] text-white sm:grid">
+          <a href={waLink("Hi, I'd like to book a cleaning service.")} target="_blank" rel="noopener" aria-label={t.cta.whatsapp} className="relative hidden h-11 w-11 place-items-center rounded-full bg-[#22c35e] text-white sm:grid">
             <span className="absolute inset-0 animate-ping rounded-full bg-[#22c35e] opacity-40" />
             <span className="relative"><WaIcon /></span>
           </a>
@@ -130,7 +130,7 @@ export function Navbar() {
                   <PhoneIcon /> {t.cta.callNow}
                 </a>
                 <a
-                  href={waLink("Hi Saffa, I'd like to book a cleaning service.")}
+                  href={waLink("Hi, I'd like to book a cleaning service.")}
                   target="_blank"
                   rel="noopener"
                   onClick={() => setOpen(false)}

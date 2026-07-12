@@ -189,7 +189,7 @@ export function BookingContact() {
             </div>
 
             
-              <a href={waLink("Hi Saffa, I'd like to book a cleaning service.")}
+              <a href={waLink("Hi, I'd like to book a cleaning service.")}
               target="_blank"
               rel="noopener"
               className="flex items-center justify-center gap-2.5 rounded-[16px] bg-[#22c35e] px-6 py-4 font-semibold text-white shadow-[0_10px_26px_rgba(34,195,94,.28)] transition hover:-translate-y-0.5"
