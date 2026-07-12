@@ -14,9 +14,11 @@ const WhatsAppIcon = () => (
 
 export function MobileHookBar() {
   return (
-    <div className="fixed inset-x-0 bottom-0 z-50 flex gap-2.5 border-t border-line bg-white/90 p-2.5 backdrop-blur-lg md:hidden">
-      
-       <a href={`tel:${site.phone}`}
+    <div
+      className="fixed inset-x-0 bottom-0 z-50 flex gap-2.5 border-t border-line bg-surface/90 p-2.5 backdrop-blur-lg md:hidden"
+      style={{ paddingBottom: "calc(0.625rem + env(safe-area-inset-bottom))" }}
+    >
+      <a href={`tel:${site.phone}`}
         className="flex flex-1 items-center justify-center gap-2 rounded-2xl bg-grad py-3 font-semibold text-white"
       >
         <PhoneIcon /> Call now

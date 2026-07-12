@@ -10,7 +10,7 @@ export function Stats() {
   return (
     <section className="bg-grad text-white">
       <Container>
-        <div className="grid gap-10 py-20 text-center md:grid-cols-4">
+        <div className="grid grid-cols-2 gap-10 py-20 text-center md:grid-cols-4">
           {site.stats.map((s, i) => (
             <motion.div
               key={s.label}

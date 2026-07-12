@@ -32,7 +32,7 @@ export function Services() {
           <span className="mb-5 inline-block text-xs font-semibold uppercase tracking-[0.26em] text-acc">
             Our Services
           </span>
-          <h2 className="font-serif text-[clamp(2.1rem,4.6vw,3.5rem)] leading-tight tracking-tight">
+          <h2 className="font-serif text-[clamp(2.1rem,4.6vw,3.5rem)] leading-tight tracking-tight text-balance">
             A clean plan for <em className="italic text-acc">every space</em>
           </h2>
           <p className="mt-4 text-muted">
@@ -62,7 +62,7 @@ export function Services() {
                 </span>
               )}
 
-              <div className="relative h-44 w-full overflow-hidden">
+              <div className="relative aspect-[16/10] w-full overflow-hidden">
                 <Image
                   src={s.image}
                   alt={s.name}
@@ -93,12 +93,11 @@ export function Services() {
 
                 <a
                   href={`tel:${site.phone}`}
-                  className={`inline-flex w-full items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold transition hover:-translate-y-0.5 ${
+                  className={`mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold transition hover:-translate-y-0.5 ${
                     s.featured
                       ? "bg-grad text-white shadow-[0_12px_30px_rgba(14,110,78,.26)]"
                       : "border border-line bg-surface text-ink hover:border-acc"
                   }`}
-                  style={{ marginTop: "1.5rem" }}
                 >
                   <PhoneIcon /> Call to book
                 </a>

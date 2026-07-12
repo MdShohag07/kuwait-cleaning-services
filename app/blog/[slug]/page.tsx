@@ -65,20 +65,20 @@ export default async function BlogPost({
             <p className="mt-4 text-lg text-muted">{post.excerpt}</p>
 
             {/* author byline */}
-            <div className="mt-6 flex items-center gap-3.5 border-y border-line-soft py-4">
-              <span className="relative h-11 w-11 overflow-hidden rounded-full">
+            <div className="mt-6 flex flex-wrap items-center gap-3.5 border-y border-line-soft py-4">
+              <span className="relative h-11 w-11 shrink-0 overflow-hidden rounded-full">
                 <Image src={post.author.avatar} alt={post.author.name} fill sizes="44px" className="object-cover" />
               </span>
               <div className="leading-tight">
                 <b className="block text-sm">{post.author.name}</b>
                 <span className="text-xs text-muted">{post.author.role}</span>
               </div>
-              
-              <a  href={post.author.linkedin}
+
+              <a href={post.author.linkedin}
                 target="_blank"
                 rel="noopener"
                 aria-label={`${post.author.name} on LinkedIn`}
-                className="ml-auto inline-flex items-center gap-2 rounded-full border border-line px-4 py-2 text-sm font-medium text-acc transition hover:bg-acc/[.08]"
+                className="inline-flex items-center gap-2 rounded-full border border-line px-4 py-2 text-sm font-medium text-acc transition hover:bg-acc/[.08] sm:ml-auto"
               >
                 <LinkedInIcon /> LinkedIn
               </a>

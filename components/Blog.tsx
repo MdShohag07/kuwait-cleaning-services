@@ -54,7 +54,7 @@ export function Blog() {
   }, [active, blogs.length]);
 
   return (
-    <section id="blog" className="overflow-hidden bg-white py-28">
+    <section id="blog" className="overflow-hidden bg-surface py-28">
       <Container>
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -66,17 +66,16 @@ export function Blog() {
           <span className="mb-5 inline-block text-xs font-semibold uppercase tracking-[0.26em] text-acc">
             From the blog
           </span>
-          <h2 className="font-serif text-[clamp(2.1rem,4.6vw,3.5rem)] leading-tight tracking-tight">
+          <h2 className="font-serif text-[clamp(2.1rem,4.6vw,3.5rem)] leading-tight tracking-tight text-balance">
             Cleaning tips &amp; <em className="italic text-acc">guides</em>
           </h2>
-          <p  className="mt-3 text-sm text-muted"></p>
         </motion.div>
       </Container>
 
       {/* coverflow stage */}
       <div
         ref={trackRef}
-        className="relative mx-auto h-[500px] w-full max-w-6xl select-none"
+        className="relative mx-auto h-[430px] w-full max-w-6xl select-none sm:h-[470px] md:h-[500px]"
         style={{ perspective: 1600 }}
         onTouchStart={(e) =>
           (touchStart.current = { x: e.touches[0].clientX, y: e.touches[0].clientY })
@@ -100,7 +99,8 @@ export function Blog() {
               key={b.slug}
               initial={false}
               animate={{
-                x: offset * 232,
+                x: `calc(-50% + ${offset * 78}%)`,
+                y: "-50%",
                 scale: 1 - clamp * 0.12,
                 rotateY: offset * -5,
                 opacity: abs > 2 ? 0 : 1 - clamp * 0.08,
@@ -111,39 +111,35 @@ export function Blog() {
                 zIndex: 50 - abs,
                 left: "50%",
                 top: "50%",
-                width: 308,
-                height: 470,
-                marginLeft: -154,
-                marginTop: -235,
                 pointerEvents: abs > 2 ? "none" : "auto",
                 cursor: isActive ? "default" : "pointer",
               }}
-              className={`absolute flex flex-col rounded-[26px] bg-white p-3 text-ink shadow-[0_30px_70px_rgba(0,0,0,.5)] ${
-                isActive ? "ring-1 ring-[#5fe0b0]/40" : ""
+              className={`absolute flex h-[400px] w-[260px] flex-col overflow-hidden rounded-xl bg-surface p-3 text-ink shadow-[0_30px_70px_rgba(9,70,50,.35)] sm:h-[440px] sm:w-[290px] md:h-[470px] md:w-[308px] ${
+                isActive ? "ring-1 ring-acc/40" : ""
               }`}
             >
               {/* image */}
-              <div className="relative h-44 w-full overflow-hidden rounded-[18px]">
-                <Image src={b.cover} alt={b.title} fill sizes="308px" className="object-cover" />
-                <span className="absolute left-3 top-3 rounded-full bg-white/90 px-3 py-1 text-[.66rem] font-semibold text-acc backdrop-blur-sm">
+              <div className="relative h-40 w-full overflow-hidden rounded-lg sm:h-44">
+                <Image src={b.cover} alt={b.title} fill sizes="(max-width: 640px) 260px, (max-width: 768px) 290px, 308px" className="object-cover" />
+                <span className="absolute left-3 top-3 rounded-full bg-surface/90 px-3 py-1 text-[.66rem] font-semibold text-acc backdrop-blur-sm">
                   {b.category}
                 </span>
               </div>
 
               {/* body */}
-              <div className="flex flex-1 flex-col px-2.5 pt-3.5">
-                <h3 className="font-serif text-xl leading-tight">{b.title}</h3>
+              <div className="flex flex-1 flex-col px-2.5 pt-3 sm:pt-3.5">
+                <h3 className="line-clamp-2 font-serif text-lg leading-tight sm:text-xl">{b.title}</h3>
                 <span className="mt-1.5 inline-flex items-center gap-1.5 text-xs text-muted">
                   <PinIcon /> {b.category} · Kuwait
                 </span>
 
-                <p className="mb-3 mt-3 text-[.7rem] font-semibold uppercase tracking-wider text-muted-2">
+                <p className="mb-2 mt-2 text-[.7rem] font-semibold uppercase tracking-wider text-muted-2 sm:mb-3 sm:mt-3">
                   Description
                 </p>
                 <p className="line-clamp-2 text-sm text-muted">{b.excerpt}</p>
 
                 {/* 3-col stat strip */}
-                <div className="mt-4 grid grid-cols-3 gap-2 border-t border-line-soft pt-3">
+                <div className="mt-3 grid grid-cols-3 gap-2 border-t border-line-soft pt-2.5 sm:mt-4 sm:pt-3">
                   {[
                     { k: "Read", v: b.readTime },
                     { k: "Topic", v: b.category },
@@ -157,7 +153,7 @@ export function Blog() {
                 </div>
 
                 {/* bottom: author + action */}
-                <div className="mt-auto flex items-center justify-between pt-4">
+                <div className="mt-auto flex items-center justify-between pt-3 sm:pt-4">
                   <div className="flex items-center gap-2.5">
                     <span className="relative h-9 w-9 overflow-hidden rounded-full">
                       <Image src={b.author.avatar} alt={b.author.name} fill sizes="36px" className="object-cover" />
@@ -202,15 +198,15 @@ export function Blog() {
       </div>
 
       {/* controls */}
-      <div className="mt-8 flex items-center justify-center gap-4">
-       <button
+      <div className="mt-8 flex items-center justify-center gap-3 px-5 sm:gap-4">
+        <button
           onClick={() => go(-1)}
           aria-label="Previous"
-          className="grid h-11 w-11 place-items-center rounded-full border border-line bg-surface text-ink shadow-soft transition hover:border-acc hover:text-acc"
+          className="grid h-11 w-11 shrink-0 place-items-center rounded-full border border-line bg-surface text-ink shadow-soft transition hover:border-acc hover:text-acc"
         >
           <Arrow dir="left" />
         </button>
-        <div className="flex gap-2.5">
+        <div className="flex max-w-[200px] flex-wrap justify-center gap-2.5 sm:max-w-none">
           {blogs.map((b, i) => (
             <button
               key={b.slug}
@@ -222,9 +218,8 @@ export function Blog() {
         </div>
         <button
           onClick={() => go(1)}
-          disabled={active === blogs.length - 1}
           aria-label="Next"
-          className="grid h-11 w-11 place-items-center rounded-full border border-line bg-surface text-ink shadow-soft transition enabled:hover:border-acc enabled:hover:text-acc disabled:opacity-40"
+          className="grid h-11 w-11 shrink-0 place-items-center rounded-full border border-line bg-surface text-ink shadow-soft transition hover:border-acc hover:text-acc"
         >
           <Arrow />
         </button>

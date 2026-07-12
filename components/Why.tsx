@@ -37,12 +37,12 @@ export function Why() {
           <span className="mb-5 inline-block text-xs font-semibold uppercase tracking-[0.26em] text-acc">
             Why {site.name}
           </span>
-          <h2 className="font-serif text-[clamp(2.1rem,4.6vw,3.5rem)] leading-tight tracking-tight">
+          <h2 className="font-serif text-[clamp(2.1rem,4.6vw,3.5rem)] leading-tight tracking-tight text-balance">
             Built on trust, <em className="italic text-acc">not luck</em>
           </h2>
         </motion.div>
 
-        <div className="grid gap-5 md:grid-cols-3">
+        <div className="grid gap-5 sm:grid-cols-2 md:grid-cols-3">
           {site.whyPoints.map((p, i) => (
             <motion.div
               key={p.title}

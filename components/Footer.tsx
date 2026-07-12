@@ -24,7 +24,7 @@ export function Footer() {
   return (
     <footer className="relative z-10 border-t border-line-soft bg-surface pb-7 pt-16">
       <Container>
-        <div className="mb-12 grid gap-10 md:grid-cols-[1.4fr_1fr_1fr_1fr]">
+        <div className="mb-12 grid gap-10 sm:grid-cols-2 md:grid-cols-[1.4fr_1fr_1fr_1fr]">
           <div>
             <div className="flex items-center gap-3 text-lg font-semibold">
               <span className="grid h-9 w-9 place-items-center rounded-[10px] bg-grad font-serif text-white">

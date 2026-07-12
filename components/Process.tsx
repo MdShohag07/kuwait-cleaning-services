@@ -19,12 +19,12 @@ export function Process() {
           <span className="mb-5 inline-block text-xs font-semibold uppercase tracking-[0.26em] text-acc">
             How it works
           </span>
-          <h2 className="font-serif text-[clamp(2.1rem,4.6vw,3.5rem)] leading-tight tracking-tight">
+          <h2 className="font-serif text-[clamp(2.1rem,4.6vw,3.5rem)] leading-tight tracking-tight text-balance">
             Four steps to a <em className="italic text-acc">spotless space</em>
           </h2>
         </motion.div>
 
-        <div className="relative grid gap-10 md:grid-cols-4 md:gap-6">
+        <div className="relative grid gap-10 sm:grid-cols-2 md:grid-cols-4 md:gap-6">
           {/* connecting line (desktop only) */}
           <div className="absolute left-[12%] right-[12%] top-[34px] hidden h-0.5 overflow-hidden rounded-full bg-line md:block">
             <motion.div

@@ -13,16 +13,16 @@ export function BlogList() {
 
   return (
     <>
-      <div className="grid gap-6 md:grid-cols-3">
+      <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3">
         {shown.map((b) => (
           <Link
             key={b.slug}
             href={`/blog/${b.slug}`}
-            className="group flex flex-col overflow-hidden rounded-[24px] border border-line-soft bg-surface shadow-soft transition hover:-translate-y-2 hover:shadow-card"
+            className="group flex flex-col overflow-hidden rounded-xl border border-line-soft bg-surface shadow-soft transition hover:-translate-y-2 hover:shadow-card"
           >
             <div className="relative h-52 overflow-hidden">
-              <Image src={b.cover} alt={b.title} fill sizes="380px" className="object-cover transition-transform duration-500 group-hover:scale-105" />
-              <span className="absolute left-4 top-4 rounded-full bg-white/90 px-3 py-1 text-xs font-semibold text-acc backdrop-blur-sm">
+              <Image src={b.cover} alt={b.title} fill sizes="(max-width: 640px) 100vw, 380px" className="object-cover transition-transform duration-500 group-hover:scale-105" />
+              <span className="absolute left-4 top-4 rounded-full bg-surface/90 px-3 py-1 text-xs font-semibold text-acc backdrop-blur-sm">
                 {b.category}
               </span>
             </div>

@@ -60,7 +60,7 @@ export function Hero() {
               variants={fadeUp}
               initial="hidden"
               animate="show"
-              className="font-serif text-[clamp(2.6rem,5.8vw,4.4rem)] leading-[1.05] tracking-tight"
+              className="font-serif text-[clamp(2.6rem,5.8vw,4.4rem)] leading-[1.05] tracking-tight text-balance"
             >
               A spotless space,
               <br />
@@ -74,9 +74,10 @@ export function Hero() {
               animate="show"
               className="mt-5 max-w-[520px] text-lg text-muted"
             >
-              {site.name} brings white-glove cleaning to Kuwait&apos;s homes,
-              villas, and offices. Vetted crews, eco-safe products, and a finish
-              you can see in the light.
+              {site.name}{" "}
+              brings white-glove cleaning to Kuwait&apos;s homes, villas, and
+              offices. Vetted crews, eco-safe products, and a finish you can
+              see in the light.
             </motion.p>
 
             <motion.div
@@ -145,16 +146,16 @@ export function Hero() {
             </div>
 
             <motion.div
-             animate={{ y: [0, -10, 0] }}
+              animate={{ y: [0, -10, 0] }}
               transition={{
                 duration: 4.5,
                 repeat: Infinity,
                 repeatType: "mirror",
                 ease: "easeInOut",
               }}
-              className="shadow-card backdrop-blur-md will-change-transform sm:-left-6 absolute -left-4 top-6 flex items-center gap-3 rounded-2xl border border-white/60 bg-white/80 px-4 py-3 shadow-card backdrop-blur-md sm:-left-6"
+              className="absolute -left-3 top-6 flex items-center gap-3 rounded-2xl border border-white/60 bg-surface/80 px-4 py-3 shadow-card backdrop-blur-md will-change-transform sm:-left-6"
             >
-              <span className=" grid h-10 w-10 place-items-center rounded-xl bg-grad text-white">
+              <span className="grid h-10 w-10 place-items-center rounded-xl bg-grad text-white">
                 <LeafIcon />
               </span>
               <div>
@@ -170,8 +171,9 @@ export function Hero() {
                 repeat: Infinity,
                 repeatType: "mirror",
                 ease: "easeInOut",
+                delay: 1.2,
               }}
-              className="shadow-card backdrop-blur-md will-change-transform  absolute -right-4 bottom-8 flex items-center gap-3 rounded-2xl border border-white/60 bg-white/80 px-4 py-3 shadow-card backdrop-blur-md sm:-right-6"
+              className="absolute -right-3 bottom-8 flex items-center gap-3 rounded-2xl border border-white/60 bg-surface/80 px-4 py-3 shadow-card backdrop-blur-md will-change-transform sm:-right-6"
             >
               <span className="grid h-10 w-10 place-items-center rounded-xl bg-grad text-white">
                 <ShieldIcon />

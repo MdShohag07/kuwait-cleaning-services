@@ -27,7 +27,7 @@ export function Video() {
           <span className="mb-5 inline-block text-xs font-semibold uppercase tracking-[0.26em] text-acc">
             See us in action
           </span>
-          <h2 className="font-serif text-[clamp(2.1rem,4.6vw,3.5rem)] leading-tight tracking-tight">
+          <h2 className="font-serif text-[clamp(2.1rem,4.6vw,3.5rem)] leading-tight tracking-tight text-balance">
             A clean you can <em className="italic text-acc">watch happen</em>
           </h2>
           <p className="mt-4 text-muted">
@@ -68,17 +68,17 @@ export function Video() {
               <span className="absolute inset-0 bg-gradient-to-b from-acc-deep/5 to-acc-deep/45" />
 
               {/* play button */}
-              <span className="absolute left-1/2 top-1/2 grid h-[88px] w-[88px] -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full bg-white/90 text-acc shadow-[0_16px_40px_rgba(0,0,0,.3)] transition-transform duration-300 group-hover:scale-110">
+              <span className="absolute left-1/2 top-1/2 grid h-16 w-16 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full bg-surface/90 text-acc shadow-[0_16px_40px_rgba(0,0,0,.3)] transition-transform duration-300 group-hover:scale-110 sm:h-[88px] sm:w-[88px]">
                 <span className="absolute inset-[-12px] animate-ping rounded-full border-2 border-white/70" />
-                <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor" className="ml-1">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" className="ml-1 sm:h-[30px] sm:w-[30px]">
                   <path d="M8 5v14l11-7z" />
                 </svg>
               </span>
 
               {/* caption */}
-              <span className="absolute bottom-6 left-7 text-left text-white">
-                <span className="block font-serif text-xl">{v.title}</span>
-                <span className="text-sm opacity-90">{v.length}</span>
+              <span className="absolute bottom-4 left-5 right-5 text-left text-white sm:bottom-6 sm:left-7 sm:right-7">
+                <span className="block font-serif text-lg sm:text-xl">{v.title}</span>
+                <span className="text-xs opacity-90 sm:text-sm">{v.length}</span>
               </span>
             </button>
           )}

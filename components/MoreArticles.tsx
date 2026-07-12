@@ -14,19 +14,19 @@ export function MoreArticles({ currentSlug }: { currentSlug: string }) {
 
   return (
     <section className="py-24">
-      <div className="mx-auto w-full max-w-[1200px] px-7">
+      <div className="mx-auto w-full max-w-[1200px] px-5 sm:px-7">
         <h2 className="mb-8 font-serif text-2xl">More articles</h2>
 
-        <div className="grid gap-6 md:grid-cols-3">
+        <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3">
           {shown.map((b) => (
             <Link
               key={b.slug}
               href={`/blog/${b.slug}`}
-              className="group overflow-hidden rounded-[20px] border border-line-soft bg-surface shadow-soft transition hover:-translate-y-1.5 hover:shadow-card"
+              className="group overflow-hidden rounded-lg border border-line-soft bg-surface shadow-soft transition hover:-translate-y-1.5 hover:shadow-card"
             >
               <div className="relative h-40 overflow-hidden">
-                <Image src={b.cover} alt={b.title} fill sizes="380px" className="object-cover transition-transform duration-500 group-hover:scale-105" />
-                <span className="absolute left-3 top-3 rounded-full bg-white/90 px-3 py-1 text-xs font-semibold text-acc backdrop-blur-sm">
+                <Image src={b.cover} alt={b.title} fill sizes="(max-width: 640px) 100vw, 380px" className="object-cover transition-transform duration-500 group-hover:scale-105" />
+                <span className="absolute left-3 top-3 rounded-full bg-surface/90 px-3 py-1 text-xs font-semibold text-acc backdrop-blur-sm">
                   {b.category}
                 </span>
               </div>

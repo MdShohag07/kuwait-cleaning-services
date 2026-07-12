@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { site, waLink } from "@/lib/site";
 import { useLang } from "@/lib/i18n";
@@ -27,15 +27,29 @@ const links = [
   { key: "blog", href: "/blog" },
 ] as const;
 
+const MenuIcon = ({ open }: { open: boolean }) => (
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round">
+    {open ? <path d="M6 6l12 12M18 6L6 18" /> : <path d="M4 7h16M4 12h16M4 17h16" />}
+  </svg>
+);
+
 export function Navbar() {
   const { t } = useLang();
   const [scrolled, setScrolled] = useState(false);
+  const [open, setOpen] = useState(false);
   useEffect(() => {
     const on = () => setScrolled(window.scrollY > 30);
     window.addEventListener("scroll", on, { passive: true });
     on();
     return () => window.removeEventListener("scroll", on);
   }, []);
+  useEffect(() => {
+    if (!open) return;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [open]);
 
   return (
     <motion.nav
@@ -43,16 +57,16 @@ export function Navbar() {
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6, ease: [0.22, 0.61, 0.36, 1] }}
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
-        scrolled ? "border-b border-line-soft bg-white/80 shadow-soft backdrop-blur-lg" : ""
+        scrolled || open ? "border-b border-line-soft bg-surface/80 shadow-soft backdrop-blur-lg" : ""
       }`}
     >
-      <Container className="flex h-[76px] items-center justify-between gap-4">
-        <Link href="#home" className="flex items-center gap-3 text-lg font-semibold">
-          <span className="grid h-9 w-9 place-items-center rounded-[10px] bg-grad font-serif text-white shadow-[0_8px_22px_rgba(14,110,78,.28)]">S</span>
-          {site.name}
+      <Container className="flex h-[72px] items-center justify-between gap-3 sm:h-[76px]">
+        <Link href="#home" onClick={() => setOpen(false)} className="flex min-w-0 items-center gap-2.5 text-base font-semibold sm:gap-3 sm:text-lg">
+          <span className="grid h-9 w-9 shrink-0 place-items-center rounded-[10px] bg-grad font-serif text-white shadow-[0_8px_22px_rgba(14,110,78,.28)]">S</span>
+          <span className="truncate">{site.name}</span>
         </Link>
 
-        <div className="hidden items-center gap-8 md:flex">
+        <div className="hidden items-center gap-6 lg:flex xl:gap-8">
           {links.map((l) => (
             <a key={l.href} href={l.href} className="text-sm font-medium text-muted transition-colors hover:text-ink">
               {t.nav[l.key]}
@@ -60,7 +74,7 @@ export function Navbar() {
           ))}
         </div>
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2 sm:gap-3">
           <LangSwitch />
           <a href={`tel:${site.phone}`} className="hidden items-center gap-3 rounded-full border border-line bg-surface py-2 pl-4 pr-2 shadow-soft transition hover:-translate-y-0.5 sm:flex">
             <span className="hidden flex-col leading-tight lg:flex">
@@ -69,15 +83,67 @@ export function Navbar() {
             </span>
             <span className="grid h-[38px] w-[38px] place-items-center rounded-full bg-grad text-white"><PhoneIcon /></span>
           </a>
-          <a href={waLink("Hi Saffa, I'd like to book a cleaning service.")} target="_blank" rel="noopener" aria-label={t.cta.whatsapp} className="relative grid h-[42px] w-[42px] place-items-center rounded-full bg-[#22c35e] text-white">
+          <a href={waLink("Hi Saffa, I'd like to book a cleaning service.")} target="_blank" rel="noopener" aria-label={t.cta.whatsapp} className="relative hidden h-11 w-11 place-items-center rounded-full bg-[#22c35e] text-white sm:grid">
             <span className="absolute inset-0 animate-ping rounded-full bg-[#22c35e] opacity-40" />
             <span className="relative"><WaIcon /></span>
           </a>
-          {/* <a href="#contact" className="rounded-full bg-grad px-6 py-3 text-sm font-semibold text-white shadow-[0_12px_30px_rgba(14,110,78,.26)] transition hover:-translate-y-0.5">
-            {t.cta.book}
-          </a> */}
+          <button
+            type="button"
+            onClick={() => setOpen((o) => !o)}
+            aria-label={open ? "Close menu" : "Open menu"}
+            aria-expanded={open}
+            aria-controls="mobile-menu"
+            className="grid h-11 w-11 shrink-0 place-items-center rounded-full border border-line bg-surface text-ink shadow-soft transition hover:border-acc lg:hidden"
+          >
+            <MenuIcon open={open} />
+          </button>
         </div>
       </Container>
+
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            id="mobile-menu"
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
+            className="overflow-hidden border-t border-line-soft bg-surface/95 backdrop-blur-lg lg:hidden"
+          >
+            <Container className="flex flex-col gap-1 py-4">
+              {links.map((l) => (
+                <a
+                  key={l.href}
+                  href={l.href}
+                  onClick={() => setOpen(false)}
+                  className="rounded-xl px-3 py-3 text-base font-medium text-muted transition-colors hover:bg-surface-2 hover:text-ink"
+                >
+                  {t.nav[l.key]}
+                </a>
+              ))}
+              <div className="mt-2 flex items-center gap-3 border-t border-line-soft pt-4">
+                <a
+                  href={`tel:${site.phone}`}
+                  onClick={() => setOpen(false)}
+                  className="flex flex-1 items-center justify-center gap-2 rounded-full bg-grad px-5 py-3 text-sm font-semibold text-white shadow-[0_12px_30px_rgba(14,110,78,.26)]"
+                >
+                  <PhoneIcon /> {t.cta.callNow}
+                </a>
+                <a
+                  href={waLink("Hi Saffa, I'd like to book a cleaning service.")}
+                  target="_blank"
+                  rel="noopener"
+                  onClick={() => setOpen(false)}
+                  aria-label={t.cta.whatsapp}
+                  className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-[#22c35e] text-white"
+                >
+                  <WaIcon />
+                </a>
+              </div>
+            </Container>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.nav>
   );
 }

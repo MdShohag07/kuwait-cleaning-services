@@ -61,7 +61,7 @@ export function BookingContact() {
           <span className="mb-5 inline-block text-xs font-semibold uppercase tracking-[0.26em] text-acc">
             Book in 60 seconds
           </span>
-          <h2 className="font-serif text-[clamp(2.1rem,4.6vw,3.5rem)] leading-tight tracking-tight">
+          <h2 className="font-serif text-[clamp(2.1rem,4.6vw,3.5rem)] leading-tight tracking-tight text-balance">
             Let&apos;s make it <em className="italic text-acc">spotless</em>
           </h2>
         </motion.div>
@@ -97,10 +97,16 @@ export function BookingContact() {
               ))}
             </select>
 
-            <div className="mt-4 grid grid-cols-2 gap-3.5">
+            <div className="mt-4 grid grid-cols-1 gap-3.5 sm:grid-cols-2">
               <div>
                 <label className="mb-2 block text-xs text-muted">Date</label>
-                <input type="date" className={fieldCls} value={date} onChange={(e) => setDate(e.target.value)} />
+                <input
+                  type="date"
+                  className={fieldCls}
+                  value={date}
+                  min={new Date().toISOString().split("T")[0]}
+                  onChange={(e) => setDate(e.target.value)}
+                />
               </div>
               <div>
                 <label className="mb-2 block text-xs text-muted">Time</label>

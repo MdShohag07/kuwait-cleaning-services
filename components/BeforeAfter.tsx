@@ -32,7 +32,7 @@ export function BeforeAfter() {
           <span className="mb-5 inline-block text-xs font-semibold uppercase tracking-[0.26em] text-acc">
             The {site.name} difference
           </span>
-          <h2 className="font-serif text-[clamp(2.1rem,4.6vw,3.5rem)] leading-tight tracking-tight">
+          <h2 className="font-serif text-[clamp(2.1rem,4.6vw,3.5rem)] leading-tight tracking-tight text-balance">
             See the <em className="italic text-acc">transformation</em>
           </h2>
           <p className="mt-4 text-muted">
