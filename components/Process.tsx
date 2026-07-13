@@ -1,6 +1,7 @@
 "use client";
 import { motion } from "framer-motion";
 import { site } from "@/lib/site";
+import { useLang } from "@/lib/i18n";
 import { Container } from "./Container";
 
 const ease = [0.16, 1, 0.3, 1] as const;
@@ -35,6 +36,7 @@ const SparklesIcon = () => (
 const stepIcons = [CalendarIcon, WaIcon, DropletIcon, SparklesIcon];
 
 export function Process() {
+  const { t, tr } = useLang();
   return (
     <section id="process" className="py-28">
       <Container>
@@ -46,10 +48,10 @@ export function Process() {
           className="mx-auto mb-16 max-w-2xl text-center"
         >
           <span className="mb-5 inline-block text-xs font-semibold uppercase tracking-[0.26em] text-acc">
-            How it works
+            {t.process.eyebrow}
           </span>
           <h2 className="font-serif text-[clamp(2.1rem,4.6vw,3.5rem)] leading-tight tracking-tight text-balance">
-            Four steps to a <em className="italic text-acc">spotless space</em>
+            {t.process.h2a} <em className="italic text-acc">{t.process.h2b}</em>
           </h2>
         </motion.div>
 
@@ -69,7 +71,7 @@ export function Process() {
             const StepIcon = stepIcons[i];
             return (
               <motion.div
-                key={s.title}
+                key={tr(s.title)}
                 initial={{ opacity: 0, y: 26 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-40px" }}
@@ -88,8 +90,8 @@ export function Process() {
                     {i + 1}
                   </span>
                 </motion.div>
-                <h3 className="font-serif text-lg">{s.title}</h3>
-                <p className="mx-auto mt-1.5 max-w-[210px] text-sm text-muted">{s.text}</p>
+                <h3 className="font-serif text-lg">{tr(s.title)}</h3>
+                <p className="mx-auto mt-1.5 max-w-[210px] text-sm text-muted">{tr(s.text)}</p>
               </motion.div>
             );
           })}

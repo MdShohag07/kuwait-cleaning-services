@@ -1,4 +1,6 @@
+"use client";
 import { site, waLink } from "@/lib/site";
+import { useLang } from "@/lib/i18n";
 
 const PhoneIcon = () => (
   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -13,6 +15,7 @@ const WhatsAppIcon = () => (
 );
 
 export function MobileHookBar() {
+  const { t } = useLang();
   return (
     <div
       className="fixed inset-x-0 bottom-0 z-50 flex gap-2.5 border-t border-line bg-surface/90 p-2.5 backdrop-blur-lg md:hidden"
@@ -21,15 +24,15 @@ export function MobileHookBar() {
       <a href={`tel:${site.phone}`}
         className="flex flex-1 items-center justify-center gap-2 rounded-2xl bg-grad py-3 font-semibold text-white"
       >
-        <PhoneIcon /> Call now
+        <PhoneIcon /> {t.mobileHook.callNow}
       </a>
-      
+
       <a  href={waLink("Hi, I'd like to book a cleaning.")}
         target="_blank"
         rel="noopener"
         className="flex flex-1 items-center justify-center gap-2 rounded-2xl bg-[#22c35e] py-3 font-semibold text-white"
       >
-        <WhatsAppIcon /> WhatsApp
+        <WhatsAppIcon /> {t.mobileHook.whatsapp}
       </a>
     </div>
   );

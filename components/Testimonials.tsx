@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { site } from "@/lib/site";
+import { useLang } from "@/lib/i18n";
 import { Container } from "./Container";
 
 const AUTOPLAY_MS = 2800;
@@ -25,7 +26,8 @@ function trio(active: number) {
 }
 
 function Card({ i, position }: { i: number; position: "side" | "center" }) {
-  const t = POOL[i];
+  const item = POOL[i];
+  const { tr } = useLang();
   const center = position === "center";
   return (
     <AnimatePresence mode="wait">
@@ -47,17 +49,17 @@ function Card({ i, position }: { i: number; position: "side" | "center" }) {
             center ? "ring-white/25" : "ring-surface"
           }`}
         >
-          <Image src={av(t.seed)} alt={t.name} fill sizes="72px" className="object-cover" />
+          <Image src={av(item.seed)} alt={item.name} fill sizes="72px" className="object-cover" />
         </span>
 
-        <b className="font-serif text-lg">{t.name}</b>
-        <span className={`text-xs ${center ? "text-white/70" : "text-muted"}`}>{t.role}</span>
+        <b className="font-serif text-lg">{item.name}</b>
+        <span className={`text-xs ${center ? "text-white/70" : "text-muted"}`}>{tr(item.role)}</span>
 
         <span className={`mt-3 font-serif text-4xl leading-none ${center ? "text-white/40" : "text-acc/40"}`}>
           &ldquo;
         </span>
         <p className={`mt-1 text-sm leading-relaxed ${center ? "text-white/90" : "text-muted"}`}>
-          {t.quote}
+          {tr(item.quote)}
         </p>
 
         <div className={`mt-4 flex gap-0.5 text-sm ${center ? "text-amber" : "text-amber"}`}>★★★★★</div>
@@ -67,6 +69,7 @@ function Card({ i, position }: { i: number; position: "side" | "center" }) {
 }
 
 export function Testimonials() {
+  const { t } = useLang();
   const [active, setActive] = useState(0);
   const [hovering, setHovering] = useState(false);
   const [paused, setPaused] = useState(false);
@@ -110,22 +113,22 @@ export function Testimonials() {
         <div className="mx-auto mb-16 flex max-w-3xl items-center justify-center gap-6">
           <button
             onClick={() => go(-1)}
-            aria-label="Previous"
+            aria-label={t.testimonials.prevAria}
             className="hidden h-11 w-11 shrink-0 place-items-center rounded-full border border-line bg-surface text-acc shadow-soft transition hover:-translate-y-0.5 hover:border-acc sm:grid"
           >
             <Arrow dir="left" />
           </button>
           <div className="text-center">
             <span className="mb-3 inline-block text-xs font-semibold uppercase tracking-[0.26em] text-acc">
-              Loved across Kuwait
+              {t.testimonials.eyebrow}
             </span>
             <h2 className="font-serif text-[clamp(1.8rem,4vw,2.8rem)] leading-tight tracking-tight text-balance">
-              What our clients <em className="italic text-acc">say</em>
+              {t.testimonials.h2a} <em className="italic text-acc">{t.testimonials.h2b}</em>
             </h2>
           </div>
           <button
             onClick={() => go(1)}
-            aria-label="Next"
+            aria-label={t.testimonials.nextAria}
             className="hidden h-11 w-11 shrink-0 place-items-center rounded-full border border-line bg-surface text-acc shadow-soft transition hover:-translate-y-0.5 hover:border-acc sm:grid"
           >
             <Arrow />
@@ -153,24 +156,24 @@ export function Testimonials() {
         <div className="mt-12 flex items-center justify-center gap-5">
           <button
             onClick={() => go(-1)}
-            aria-label="Previous"
+            aria-label={t.testimonials.prevAria}
             className="grid h-10 w-10 shrink-0 place-items-center rounded-full border border-line bg-surface text-acc shadow-soft transition hover:border-acc sm:hidden"
           >
             <Arrow dir="left" />
           </button>
           <div className="flex max-w-[200px] flex-wrap justify-center gap-2.5 sm:max-w-none">
-            {POOL.map((t, i) => (
+            {POOL.map((item, i) => (
               <button
-                key={t.seed}
+                key={item.seed}
                 onClick={() => goTo(i)}
-                aria-label={`Go to review ${i + 1}`}
+                aria-label={t.testimonials.goToAria.replace("{n}", String(i + 1))}
                 className={`h-2.5 rounded-full transition-all ${i === active ? "w-6 bg-grad" : "w-2.5 bg-line"}`}
               />
             ))}
           </div>
           <button
             onClick={() => go(1)}
-            aria-label="Next"
+            aria-label={t.testimonials.nextAria}
             className="grid h-10 w-10 shrink-0 place-items-center rounded-full border border-line bg-surface text-acc shadow-soft transition hover:border-acc sm:hidden"
           >
             <Arrow />

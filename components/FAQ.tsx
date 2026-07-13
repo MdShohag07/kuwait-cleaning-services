@@ -2,12 +2,14 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { site } from "@/lib/site";
+import { useLang } from "@/lib/i18n";
 import { Container } from "./Container";
 
 const ease = [0.16, 1, 0.3, 1] as const;
 
 export function FAQ() {
   const [open, setOpen] = useState<number | null>(0);
+  const { t, tr } = useLang();
 
   return (
     <section id="faq" className="py-28">
@@ -20,10 +22,10 @@ export function FAQ() {
           className="mx-auto mb-12 max-w-2xl text-center"
         >
           <span className="mb-5 inline-block text-xs font-semibold uppercase tracking-[0.26em] text-acc">
-            Good to know
+            {t.faq.eyebrow}
           </span>
           <h2 className="font-serif text-[clamp(2.1rem,4.6vw,3.5rem)] leading-tight tracking-tight text-balance">
-            Questions, <em className="italic text-acc">answered</em>
+            {t.faq.h2a} <em className="italic text-acc">{t.faq.h2b}</em>
           </h2>
         </motion.div>
 
@@ -31,12 +33,12 @@ export function FAQ() {
           {site.faqs.map((f, i) => {
             const isOpen = open === i;
             return (
-              <div key={f.q} className="border-b border-line-soft">
+              <div key={tr(f.q)} className="border-b border-line-soft">
                 <button
                   onClick={() => setOpen(isOpen ? null : i)}
                   className="flex w-full items-center justify-between gap-5 py-5 text-left text-lg font-medium"
                 >
-                  {f.q}
+                  {tr(f.q)}
                   <span
                     className={`grid h-6 w-6 shrink-0 place-items-center text-acc transition-transform duration-300 ${
                       isOpen ? "rotate-45" : ""
@@ -56,7 +58,7 @@ export function FAQ() {
                       transition={{ duration: 0.35, ease }}
                       className="overflow-hidden"
                     >
-                      <p className="pb-5 text-muted">{f.a}</p>
+                      <p className="pb-5 text-muted">{tr(f.a)}</p>
                     </motion.div>
                   )}
                 </AnimatePresence>

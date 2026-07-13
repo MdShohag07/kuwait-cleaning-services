@@ -3,6 +3,7 @@ import type { ComponentType } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { site, waLink } from "@/lib/site";
+import { useLang } from "@/lib/i18n";
 
 const ease = "easeOut" as const;
 
@@ -48,48 +49,6 @@ const WaIcon = () => (
 );
 
 const waHref = waLink("Hi, I'd like to book a cleaning service.");
-
-const footerData = {
-  sections: [
-    {
-      title: "Services",
-      links: site.services.map((s) => ({ label: s.name, href: "/#services" })),
-    },
-    {
-      title: "Company",
-      links: [
-        { label: "Why Us", href: "/#why" },
-        { label: "How it works", href: "/#process" },
-        { label: "Results", href: "/#results" },
-        { label: "FAQ", href: "/#faq" },
-      ],
-    },
-    {
-      title: "Resources",
-      links: [
-        { label: "Blog", href: "/blog" },
-        { label: "Reviews", href: "/#reviews" },
-        { label: "Book now", href: "/#contact" },
-      ],
-    },
-    {
-      title: "Contact",
-      links: [
-        { label: site.phoneDisplay, href: `tel:${site.phone}` },
-        { label: site.email, href: `mailto:${site.email}` },
-        { label: `${site.city}, Kuwait`, href: "/#contact" },
-      ],
-    },
-  ],
-  quickActions: [
-    { href: `tel:${site.phone}`, label: "Call", Icon: PhoneIcon },
-    { href: waHref, label: "WhatsApp", Icon: WaIcon },
-    { href: `mailto:${site.email}`, label: "Email", Icon: MailIcon },
-  ],
-  title: site.name,
-  subtitle: site.tagline,
-  copyright: `© ${new Date().getFullYear()} ${site.name}. All rights reserved.`,
-};
 
 const NavSection = ({ title, links }: { title: string; links: { label: string; href: string }[] }) => (
   <motion.div variants={itemVariants} className="flex flex-col gap-2">
@@ -138,6 +97,50 @@ const QuickAction = ({ href, label, Icon }: { href: string; label: string; Icon:
 );
 
 export function Footer() {
+  const { t, tr } = useLang();
+
+  const footerData = {
+    sections: [
+      {
+        title: t.footer.sectionServices,
+        links: site.services.map((s) => ({ label: tr(s.name), href: "/#services" })),
+      },
+      {
+        title: t.footer.sectionCompany,
+        links: [
+          { label: t.footer.whyUs, href: "/#why" },
+          { label: t.footer.howItWorks, href: "/#process" },
+          { label: t.footer.results, href: "/#results" },
+          { label: t.footer.faq, href: "/#faq" },
+        ],
+      },
+      {
+        title: t.footer.sectionResources,
+        links: [
+          { label: t.footer.blog, href: "/blog" },
+          { label: t.footer.reviews, href: "/#reviews" },
+          { label: t.footer.bookNow, href: "/#contact" },
+        ],
+      },
+      {
+        title: t.footer.sectionContact,
+        links: [
+          { label: site.phoneDisplay, href: `tel:${site.phone}` },
+          { label: site.email, href: `mailto:${site.email}` },
+          { label: `${tr(site.city)}, ${t.blog.kuwaitSuffix}`, href: "/#contact" },
+        ],
+      },
+    ],
+    quickActions: [
+      { href: `tel:${site.phone}`, label: t.footer.call, Icon: PhoneIcon },
+      { href: waHref, label: t.footer.whatsapp, Icon: WaIcon },
+      { href: `mailto:${site.email}`, label: t.footer.email, Icon: MailIcon },
+    ],
+    title: site.name,
+    subtitle: tr(site.tagline),
+    copyright: `© ${new Date().getFullYear()} ${site.name}. ${t.footer.allRightsReserved}`,
+  };
+
   return (
     <div className="relative h-[70vh]" style={{ clipPath: "polygon(0% 0, 100% 0%, 100% 100%, 0 100%)" }}>
       <div className="relative h-[calc(100vh+70vh)] -top-[100vh]">

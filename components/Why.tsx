@@ -1,6 +1,7 @@
 "use client";
 import { motion } from "framer-motion";
 import { site } from "@/lib/site";
+import { useLang } from "@/lib/i18n";
 import { Container } from "./Container";
 
 const ease = [0.16, 1, 0.3, 1] as const;
@@ -24,6 +25,7 @@ function Icon({ name }: { name: string }) {
 }
 
 export function Why() {
+  const { t, tr } = useLang();
   return (
     <section id="why" className="py-28">
       <Container>
@@ -35,17 +37,17 @@ export function Why() {
           className="mx-auto mb-14 max-w-2xl text-center"
         >
           <span className="mb-5 inline-block text-xs font-semibold uppercase tracking-[0.26em] text-acc">
-            Why {site.name}
+            {t.why.eyebrowPrefix} {site.name}
           </span>
           <h2 className="font-serif text-[clamp(2.1rem,4.6vw,3.5rem)] leading-tight tracking-tight text-balance">
-            Built on trust, <em className="italic text-acc">not luck</em>
+            {t.why.h2a} <em className="italic text-acc">{t.why.h2b}</em>
           </h2>
         </motion.div>
 
         <div className="grid gap-5 sm:grid-cols-2 md:grid-cols-3">
           {site.whyPoints.map((p, i) => (
             <motion.div
-              key={p.title}
+              key={tr(p.title)}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-40px" }}
@@ -55,8 +57,8 @@ export function Why() {
               <span className="mb-4 grid h-12 w-12 place-items-center rounded-xl bg-grad text-white shadow-[0_8px_20px_rgba(14,110,78,.22)]">
                 <Icon name={p.icon} />
               </span>
-              <h3 className="font-serif text-lg">{p.title}</h3>
-              <p className="mt-2 text-sm text-muted">{p.text}</p>
+              <h3 className="font-serif text-lg">{tr(p.title)}</h3>
+              <p className="mt-2 text-sm text-muted">{tr(p.text)}</p>
             </motion.div>
           ))}
         </div>

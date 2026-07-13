@@ -2,6 +2,7 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { site } from "@/lib/site";
+import { useLang } from "@/lib/i18n";
 import { Container } from "./Container";
 
 const ShieldIcon = () => (
@@ -32,6 +33,7 @@ const fadeUp = {
 };
 
 export function Hero() {
+  const { t } = useLang();
   return (
     <section id="home" className="relative overflow-hidden pb-24 pt-36 md:pt-40">
       {/* soft ambient glows */}
@@ -52,7 +54,7 @@ export function Hero() {
               className="mb-6 inline-flex items-center gap-2 rounded-full border border-line bg-surface px-4 py-2 text-xs text-muted shadow-soft"
             >
               <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-[#22c35e]" />
-              Now serving Kuwait City, Hawalli &amp; Salmiya
+              {t.hero.badge}
             </motion.span>
 
             <motion.h1
@@ -62,9 +64,9 @@ export function Hero() {
               animate="show"
               className="font-serif text-[clamp(2.6rem,5.8vw,4.4rem)] leading-[1.05] tracking-tight text-balance"
             >
-              A spotless space,
+              {t.hero.h1a}
               <br />
-              <em className="italic text-acc">delivered like art.</em>
+              <em className="italic text-acc">{t.hero.h1b}</em>
             </motion.h1>
 
             <motion.p
@@ -74,10 +76,7 @@ export function Hero() {
               animate="show"
               className="mt-5 max-w-[520px] text-lg text-muted"
             >
-              {site.name}{" "}
-              brings white-glove cleaning to Kuwait&apos;s homes, villas, and
-              offices. Vetted crews, eco-safe products, and a finish you can
-              see in the light.
+              {t.hero.sub.replace("{name}", site.name)}
             </motion.p>
 
             <motion.div
@@ -91,13 +90,13 @@ export function Hero() {
                 href="#contact"
                 className="inline-flex items-center gap-2 rounded-full bg-grad px-6 py-3.5 font-semibold text-white shadow-[0_12px_30px_rgba(14,110,78,.26)] transition hover:-translate-y-0.5"
               >
-                Book a service <ArrowIcon />
+                {t.cta.book} <ArrowIcon />
               </a>
               <a
                 href="#services"
                 className="rounded-full border border-line bg-surface px-6 py-3.5 font-semibold transition hover:-translate-y-0.5"
               >
-                View services &amp; pricing
+                {t.cta.services}
               </a>
             </motion.div>
 
@@ -112,17 +111,17 @@ export function Hero() {
                 <div className="flex gap-0.5 text-amber" aria-label="4.9 out of 5">
                   ★★★★★
                 </div>
-                <p className="text-xs text-muted-2">4.9 average · 600+ reviews</p>
+                <p className="text-xs text-muted-2">{t.hero.ratingCaption}</p>
               </div>
               <span className="hidden h-9 w-px bg-line sm:block" />
               <div>
-                <b className="font-semibold">5,000+</b>
-                <p className="text-xs text-muted-2">homes &amp; offices cleaned</p>
+                <b className="font-semibold">{t.hero.statHomesNum}</b>
+                <p className="text-xs text-muted-2">{t.hero.statHomesLabel}</p>
               </div>
               <span className="hidden h-9 w-px bg-line sm:block" />
               <div>
-                <b className="font-semibold">100%</b>
-                <p className="text-xs text-muted-2">spotless guarantee</p>
+                <b className="font-semibold">{t.hero.statGuaranteeNum}</b>
+                <p className="text-xs text-muted-2">{t.hero.statGuaranteeLabel}</p>
               </div>
             </motion.div>
           </div>
@@ -159,8 +158,8 @@ export function Hero() {
                 <LeafIcon />
               </span>
               <div>
-                <b className="block text-sm leading-none">Eco-safe</b>
-                <span className="text-xs text-muted">Family &amp; pet friendly</span>
+                <b className="block text-sm leading-none">{t.hero.ecoTitle}</b>
+                <span className="text-xs text-muted">{t.hero.ecoSub}</span>
               </div>
             </motion.div>
 
@@ -179,8 +178,8 @@ export function Hero() {
                 <ShieldIcon />
               </span>
               <div>
-                <b className="block text-sm leading-none">Insured crews</b>
-                <span className="text-xs text-muted">Background-checked</span>
+                <b className="block text-sm leading-none">{t.hero.insuredTitle}</b>
+                <span className="text-xs text-muted">{t.hero.insuredSub}</span>
               </div>
             </motion.div>
           </motion.div>

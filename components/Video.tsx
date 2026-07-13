@@ -3,12 +3,14 @@ import { useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { site } from "@/lib/site";
+import { useLang } from "@/lib/i18n";
 import { Container } from "./Container";
 
 const ease = [0.16, 1, 0.3, 1] as const;
 
 export function Video() {
   const [playing, setPlaying] = useState(false);
+  const { t, tr } = useLang();
   const v = site.video;
 
   return (
@@ -25,13 +27,13 @@ export function Video() {
           className="mx-auto mb-14 max-w-2xl text-center"
         >
           <span className="mb-5 inline-block text-xs font-semibold uppercase tracking-[0.26em] text-acc">
-            See us in action
+            {t.video.eyebrow}
           </span>
           <h2 className="font-serif text-[clamp(2.1rem,4.6vw,3.5rem)] leading-tight tracking-tight text-balance">
-            A clean you can <em className="italic text-acc">watch happen</em>
+            {t.video.h2a} <em className="italic text-acc">{t.video.h2b}</em>
           </h2>
           <p className="mt-4 text-muted">
-            Press play to see our cleaning standard for yourself.
+            {t.video.sub}
           </p>
         </motion.div>
 
@@ -53,12 +55,12 @@ export function Video() {
           ) : (
             <button
               onClick={() => setPlaying(true)}
-              aria-label="Play cleaning video"
+              aria-label={t.video.playAria}
               className="group absolute inset-0 h-full w-full"
             >
               <Image
                 src={v.thumb}
-                alt={v.title}
+                alt={tr(v.title)}
                 fill
                 sizes="(max-width: 768px) 100vw, 900px"
                 className="object-cover"
@@ -76,8 +78,8 @@ export function Video() {
 
               {/* caption */}
               <span className="absolute bottom-4 left-5 right-5 text-left text-white sm:bottom-6 sm:left-7 sm:right-7">
-                <span className="block font-serif text-lg sm:text-xl">{v.title}</span>
-                <span className="text-xs opacity-90 sm:text-sm">{v.length}</span>
+                <span className="block font-serif text-lg sm:text-xl">{tr(v.title)}</span>
+                <span className="text-xs opacity-90 sm:text-sm">{tr(v.length)}</span>
               </span>
             </button>
           )}

@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { site } from "@/lib/site";
+import { useLang } from "@/lib/i18n";
 import { Container } from "./Container";
 
 const ease = [0.16, 1, 0.3, 1] as const;
@@ -26,6 +27,7 @@ const Arrow = ({ dir = "right" }: { dir?: "left" | "right" }) => (
 );
 
 export function Blog() {
+  const { t, tr } = useLang();
   const blogs = site.blogs;
   const [active, setActive] = useState(0);
   const trackRef = useRef<HTMLDivElement>(null);
@@ -64,10 +66,10 @@ export function Blog() {
           className="mx-auto mb-12 max-w-2xl text-center"
         >
           <span className="mb-5 inline-block text-xs font-semibold uppercase tracking-[0.26em] text-acc">
-            From the blog
+            {t.blog.eyebrow}
           </span>
           <h2 className="font-serif text-[clamp(2.1rem,4.6vw,3.5rem)] leading-tight tracking-tight text-balance">
-            Cleaning tips &amp; <em className="italic text-acc">guides</em>
+            {t.blog.h2a} <em className="italic text-acc">{t.blog.h2b}</em>
           </h2>
         </motion.div>
       </Container>
@@ -120,30 +122,30 @@ export function Blog() {
             >
               {/* image */}
               <div className="relative h-40 w-full overflow-hidden rounded-lg sm:h-44">
-                <Image src={b.cover} alt={b.title} fill sizes="(max-width: 640px) 260px, (max-width: 768px) 290px, 308px" className="object-cover" />
+                <Image src={b.cover} alt={tr(b.title)} fill sizes="(max-width: 640px) 260px, (max-width: 768px) 290px, 308px" className="object-cover" />
                 <span className="absolute left-3 top-3 rounded-full bg-surface/90 px-3 py-1 text-[.66rem] font-semibold text-acc backdrop-blur-sm">
-                  {b.category}
+                  {tr(b.category)}
                 </span>
               </div>
 
               {/* body */}
               <div className="flex flex-1 flex-col px-2.5 pt-3 sm:pt-3.5">
-                <h3 className="line-clamp-2 font-serif text-lg leading-tight sm:text-xl">{b.title}</h3>
+                <h3 className="line-clamp-2 font-serif text-lg leading-tight sm:text-xl">{tr(b.title)}</h3>
                 <span className="mt-1.5 inline-flex items-center gap-1.5 text-xs text-muted">
-                  <PinIcon /> {b.category} · Kuwait
+                  <PinIcon /> {tr(b.category)} · {t.blog.kuwaitSuffix}
                 </span>
 
                 <p className="mb-2 mt-2 text-[.7rem] font-semibold uppercase tracking-wider text-muted-2 sm:mb-3 sm:mt-3">
-                  Description
+                  {t.blog.descriptionLabel}
                 </p>
-                <p className="line-clamp-2 text-sm text-muted">{b.excerpt}</p>
+                <p className="line-clamp-2 text-sm text-muted">{tr(b.excerpt)}</p>
 
                 {/* 3-col stat strip */}
                 <div className="mt-3 grid grid-cols-3 gap-2 border-t border-line-soft pt-2.5 sm:mt-4 sm:pt-3">
                   {[
-                    { k: "Read", v: b.readTime },
-                    { k: "Topic", v: b.category },
-                    { k: "Published", v: b.date },
+                    { k: t.blog.readLabel, v: tr(b.readTime) },
+                    { k: t.blog.topicLabel, v: tr(b.category) },
+                    { k: t.blog.publishedLabel, v: tr(b.date) },
                   ].map((s) => (
                     <div key={s.k}>
                       <p className="text-[.6rem] uppercase tracking-wider text-muted-2">{s.k}</p>
@@ -161,7 +163,7 @@ export function Blog() {
                     <span className="leading-tight">
                       <b className="flex items-center gap-1.5 text-xs">
                         {b.author.name}
-                        
+
                          <a href={b.author.linkedin}
                           target="_blank"
                           rel="noopener"
@@ -172,7 +174,7 @@ export function Blog() {
                           <LinkedInIcon />
                         </a>
                       </b>
-                      <span className="text-[.68rem] text-muted-2">{b.author.role}</span>
+                      <span className="text-[.68rem] text-muted-2">{tr(b.author.role)}</span>
                     </span>
                   </div>
 
@@ -180,7 +182,7 @@ export function Blog() {
                     <Link
                       href={`/blog/${b.slug}`}
                       onClick={(e) => e.stopPropagation()}
-                      aria-label={`Read ${b.title}`}
+                      aria-label={`${t.blog.readLabel} ${tr(b.title)}`}
                       className="grid h-11 w-11 place-items-center rounded-full bg-grad text-white shadow-[0_10px_24px_rgba(14,110,78,.4)] transition hover:scale-105"
                     >
                       <Arrow />
@@ -201,7 +203,7 @@ export function Blog() {
       <div className="mt-8 flex items-center justify-center gap-3 px-5 sm:gap-4">
         <button
           onClick={() => go(-1)}
-          aria-label="Previous"
+          aria-label={t.blog.prevAria}
           className="grid h-11 w-11 shrink-0 place-items-center rounded-full border border-line bg-surface text-ink shadow-soft transition hover:border-acc hover:text-acc"
         >
           <Arrow dir="left" />
@@ -211,14 +213,14 @@ export function Blog() {
             <button
               key={b.slug}
               onClick={() => setActive(i)}
-              aria-label={`Go to article ${i + 1}`}
+              aria-label={t.blog.goToAria.replace("{n}", String(i + 1))}
               className={`h-2.5 rounded-full transition-all ${i === active ? "w-6 bg-grad" : "w-2.5 bg-line"}`}
             />
           ))}
         </div>
         <button
           onClick={() => go(1)}
-          aria-label="Next"
+          aria-label={t.blog.nextAria}
           className="grid h-11 w-11 shrink-0 place-items-center rounded-full border border-line bg-surface text-ink shadow-soft transition hover:border-acc hover:text-acc"
         >
           <Arrow />

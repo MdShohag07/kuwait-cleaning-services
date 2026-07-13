@@ -90,7 +90,7 @@ export function Navbar() {
           <button
             type="button"
             onClick={() => setOpen((o) => !o)}
-            aria-label={open ? "Close menu" : "Open menu"}
+            aria-label={open ? t.menu.close : t.menu.open}
             aria-expanded={open}
             aria-controls="mobile-menu"
             className="grid h-11 w-11 shrink-0 place-items-center rounded-full border border-line bg-surface text-ink shadow-soft transition hover:border-acc lg:hidden"

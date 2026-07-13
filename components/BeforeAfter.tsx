@@ -2,6 +2,7 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { site } from "@/lib/site";
+import { useLang } from "@/lib/i18n";
 import { Container } from "./Container";
 
 const ease = [0.16, 1, 0.3, 1] as const;
@@ -17,6 +18,7 @@ const item = {
 };
 
 export function BeforeAfter() {
+  const { t, tr } = useLang();
   const cases = site.beforeAfter.cases;
 
   return (
@@ -30,14 +32,13 @@ export function BeforeAfter() {
           className="mx-auto mb-14 max-w-2xl text-center"
         >
           <span className="mb-5 inline-block text-xs font-semibold uppercase tracking-[0.26em] text-acc">
-            The {site.name} difference
+            {t.beforeAfter.eyebrowPrefix} {site.name} {t.beforeAfter.eyebrowSuffix}
           </span>
           <h2 className="font-serif text-[clamp(2.1rem,4.6vw,3.5rem)] leading-tight tracking-tight text-balance">
-            See the <em className="italic text-acc">transformation</em>
+            {t.beforeAfter.h2a} <em className="italic text-acc">{t.beforeAfter.h2b}</em>
           </h2>
           <p className="mt-4 text-muted">
-            Real results from real homes across Kuwait — messy on the left,
-            spotless on the right.
+            {t.beforeAfter.sub}
           </p>
         </motion.div>
 
@@ -50,7 +51,7 @@ export function BeforeAfter() {
         >
           {cases.map((c) => (
             <motion.article
-              key={c.label}
+              key={tr(c.label)}
               variants={item}
               className="overflow-hidden rounded-2xl border border-line bg-surface shadow-soft"
             >
@@ -58,32 +59,32 @@ export function BeforeAfter() {
                 <div className="relative w-1/2">
                   <Image
                     src={c.before}
-                    alt={`Before cleaning — ${c.label}`}
+                    alt={`${t.beforeAfter.before} — ${tr(c.label)}`}
                     fill
                     sizes="(max-width: 640px) 50vw, 300px"
                     className="object-cover"
                   />
                   <span className="absolute left-2 top-2 rounded-md bg-[rgba(19,36,27,.65)] px-2 py-1 text-[.65rem] font-semibold uppercase tracking-wide text-white">
-                    Before
+                    {t.beforeAfter.before}
                   </span>
                 </div>
                 <div className="relative w-1/2">
                   <Image
                     src={c.after}
-                    alt={`After cleaning — ${c.label}`}
+                    alt={`${t.beforeAfter.after} — ${tr(c.label)}`}
                     fill
                     sizes="(max-width: 640px) 50vw, 300px"
                     className="object-cover"
                   />
                   <span className="absolute right-2 top-2 rounded-md bg-acc/90 px-2 py-1 text-[.65rem] font-semibold uppercase tracking-wide text-white">
-                    After
+                    {t.beforeAfter.after}
                   </span>
                 </div>
               </div>
 
               <div className="p-5">
-                <h3 className="font-serif text-lg leading-snug">{c.label}</h3>
-                <p className="mt-1.5 text-sm leading-relaxed text-muted">{c.note}</p>
+                <h3 className="font-serif text-lg leading-snug">{tr(c.label)}</h3>
+                <p className="mt-1.5 text-sm leading-relaxed text-muted">{tr(c.note)}</p>
               </div>
             </motion.article>
           ))}
