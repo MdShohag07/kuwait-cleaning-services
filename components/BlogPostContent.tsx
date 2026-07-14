@@ -3,9 +3,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { site } from "@/lib/site";
 import { useLang } from "@/lib/i18n";
+import type { BlogPost } from "@/lib/data/blogs";
 import { Container } from "./Container";
-
-type BlogPost = (typeof site.blogs)[number];
 
 const LinkedInIcon = () => (
   <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">

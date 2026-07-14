@@ -2,15 +2,14 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import { site } from "@/lib/site";
 import { useLang } from "@/lib/i18n";
+import type { ReviewItem } from "@/lib/data/reviews";
 import { Container } from "./Container";
 
 const AUTOPLAY_MS = 2800;
 const RESUME_AFTER_MS = 6000;
 
 const ease = [0.16, 1, 0.3, 1] as const;
-const POOL = site.testimonials;
 const av = (seed: string) => `https://picsum.photos/seed/${seed}/120/120`;
 
 const Arrow = ({ dir = "right" }: { dir?: "left" | "right" }) => (
@@ -20,13 +19,12 @@ const Arrow = ({ dir = "right" }: { dir?: "left" | "right" }) => (
 );
 
 // returns the three visible testimonials (left, center, right) around `active`
-function trio(active: number) {
-  const n = POOL.length;
+function trio(active: number, n: number) {
   return [(active - 1 + n) % n, active % n, (active + 1) % n];
 }
 
-function Card({ i, position }: { i: number; position: "side" | "center" }) {
-  const item = POOL[i];
+function Card({ pool, i, position }: { pool: ReviewItem[]; i: number; position: "side" | "center" }) {
+  const item = pool[i];
   const { tr } = useLang();
   const center = position === "center";
   return (
@@ -62,19 +60,22 @@ function Card({ i, position }: { i: number; position: "side" | "center" }) {
           {tr(item.quote)}
         </p>
 
-        <div className={`mt-4 flex gap-0.5 text-sm ${center ? "text-amber" : "text-amber"}`}>★★★★★</div>
+        <div className="mt-4 flex gap-0.5 text-sm text-amber">
+          {"★".repeat(item.rating)}
+          {"☆".repeat(Math.max(0, 5 - item.rating))}
+        </div>
       </motion.div>
     </AnimatePresence>
   );
 }
 
-export function Testimonials() {
+export function Testimonials({ reviews }: { reviews: ReviewItem[] }) {
   const { t } = useLang();
   const [active, setActive] = useState(0);
   const [hovering, setHovering] = useState(false);
   const [paused, setPaused] = useState(false);
-  const n = POOL.length;
-  const [left, center, right] = trio(active);
+  const n = reviews.length;
+  const [left, center, right] = n > 0 ? trio(active, n) : [0, 0, 0];
   const resumeTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const pauseThenResume = () => {
@@ -94,7 +95,7 @@ export function Testimonials() {
 
   // auto-advance every ~2.8s; pauses on hover/manual navigation and honors reduced-motion
   useEffect(() => {
-    if (hovering || paused) return;
+    if (hovering || paused || n === 0) return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     const id = setInterval(() => setActive((a) => (a + 1) % n), AUTOPLAY_MS);
     return () => clearInterval(id);
@@ -105,6 +106,8 @@ export function Testimonials() {
       if (resumeTimeout.current) clearTimeout(resumeTimeout.current);
     };
   }, []);
+
+  if (n === 0) return null;
 
   return (
     <section id="reviews" className="overflow-hidden bg-surface py-28">
@@ -142,13 +145,13 @@ export function Testimonials() {
           onMouseLeave={() => setHovering(false)}
         >
           <div className="hidden md:block">
-            <Card i={left} position="side" />
+            <Card pool={reviews} i={left} position="side" />
           </div>
           <div className="md:-mt-6 md:scale-[1.04]">
-            <Card i={center} position="center" />
+            <Card pool={reviews} i={center} position="center" />
           </div>
           <div className="hidden md:block">
-            <Card i={right} position="side" />
+            <Card pool={reviews} i={right} position="side" />
           </div>
         </div>
 
@@ -162,9 +165,9 @@ export function Testimonials() {
             <Arrow dir="left" />
           </button>
           <div className="flex max-w-[200px] flex-wrap justify-center gap-2.5 sm:max-w-none">
-            {POOL.map((item, i) => (
+            {reviews.map((item, i) => (
               <button
-                key={item.seed}
+                key={item.id}
                 onClick={() => goTo(i)}
                 aria-label={t.testimonials.goToAria.replace("{n}", String(i + 1))}
                 className={`h-2.5 rounded-full transition-all ${i === active ? "w-6 bg-grad" : "w-2.5 bg-line"}`}

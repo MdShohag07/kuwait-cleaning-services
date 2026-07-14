@@ -2,15 +2,15 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { site } from "@/lib/site";
 import { useLang } from "@/lib/i18n";
+import type { BlogPost } from "@/lib/data/blogs";
 
 const INITIAL = 3;
 const STEP = 3;
 
-export function MoreArticles({ currentSlug }: { currentSlug: string }) {
+export function MoreArticles({ blogs, currentSlug }: { blogs: BlogPost[]; currentSlug: string }) {
   const { t, tr } = useLang();
-  const others = site.blogs.filter((b) => b.slug !== currentSlug);
+  const others = blogs.filter((b) => b.slug !== currentSlug);
   const [count, setCount] = useState(INITIAL);
   const shown = others.slice(0, count);
 

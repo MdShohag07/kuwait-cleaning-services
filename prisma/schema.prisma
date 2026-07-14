@@ -1,0 +1,114 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  OWNER
+  ADMIN
+}
+
+enum ReviewStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+model User {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  passwordHash String
+  name         String
+  role         Role     @default(ADMIN)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model Service {
+  id         String   @id @default(cuid())
+  nameEn     String
+  nameAr     String
+  subtitleEn String?
+  subtitleAr String?
+  descEn     String
+  descAr     String
+  image      String
+  featuresEn Json // string[]
+  featuresAr Json // string[]
+  noteEn     String?
+  noteAr     String?
+  featured   Boolean  @default(false)
+  order      Int      @default(0)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
+
+model BlogPost {
+  id             String   @id @default(cuid())
+  slug           String   @unique
+  titleEn        String
+  titleAr        String
+  excerptEn      String
+  excerptAr      String
+  categoryEn     String
+  categoryAr     String
+  readTimeEn     String
+  readTimeAr     String
+  dateEn         String
+  dateAr         String
+  cover          String
+  authorName     String
+  authorRoleEn   String
+  authorRoleAr   String
+  authorLinkedin String?
+  authorAvatar   String
+  bodyEn         Json // string[]
+  bodyAr         Json // string[]
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+}
+
+model Video {
+  id        String   @id @default(cuid())
+  youtubeId String
+  titleEn   String
+  titleAr   String
+  lengthEn  String
+  lengthAr  String
+  order     Int      @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model BeforeAfterCase {
+  id        String   @id @default(cuid())
+  labelEn   String
+  labelAr   String
+  before    String
+  after     String
+  noteEn    String
+  noteAr    String
+  order     Int      @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Review {
+  id        String       @id @default(cuid())
+  name      String
+  rating    Int
+  quoteEn   String?
+  quoteAr   String?
+  roleEn    String?
+  roleAr    String?
+  seed      String?
+  status    ReviewStatus @default(PENDING)
+  createdAt DateTime     @default(now())
+  updatedAt DateTime     @updatedAt
+
+  @@index([status])
+}

@@ -6,5 +6,12 @@
 *.pem
 npm-debug.log*
 .env*
+!.env.example
 next-env.d.ts
 *.tsbuildinfo
+
+# database + uploads (runtime data, not source)
+/prisma/*.db
+/prisma/*.db-journal
+/public/uploads/*
+!/public/uploads/.gitkeep

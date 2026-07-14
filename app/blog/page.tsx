@@ -6,13 +6,17 @@ import { MobileHookBar } from "@/components/MobileHookBar";
 import { Container } from "@/components/Container";
 import { BlogList } from "@/components/BlogList";
 import { BlogIndexHero } from "@/components/BlogIndexHero";
+import { getServices } from "@/lib/data/services";
+import { getBlogs } from "@/lib/data/blogs";
 
 export const metadata: Metadata = {
   title: `Blog | ${site.name}`,
   description: "Cleaning tips, guides, and stories from the Kuwait cleaning experts.",
 };
 
-export default function BlogIndex() {
+export default async function BlogIndex() {
+  const [services, blogs] = await Promise.all([getServices(), getBlogs()]);
+
   return (
     <>
       <Navbar />
@@ -23,11 +27,11 @@ export default function BlogIndex() {
 
         <section className="py-16">
           <Container>
-            <BlogList />
+            <BlogList blogs={blogs} />
           </Container>
         </section>
       </main>
-      <Footer />
+      <Footer services={services} />
       <MobileHookBar />
     </>
   );

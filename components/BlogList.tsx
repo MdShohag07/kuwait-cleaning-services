@@ -2,14 +2,14 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { site } from "@/lib/site";
 import { useLang } from "@/lib/i18n";
+import type { BlogPost } from "@/lib/data/blogs";
 
 const STEP = 6;
 
-export function BlogList() {
+export function BlogList({ blogs }: { blogs: BlogPost[] }) {
   const { t, tr } = useLang();
-  const all = site.blogs;
+  const all = blogs;
   const [count, setCount] = useState(STEP);
   const shown = all.slice(0, count);
 

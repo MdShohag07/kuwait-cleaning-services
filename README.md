@@ -63,7 +63,9 @@ Clean Home Kuwait is a conversion-focused landing page and micro-site for a resi
 | Styling | [Tailwind CSS v4](https://tailwindcss.com/) (design tokens via `@theme`) |
 | Animation | [Framer Motion](https://www.framer.com/motion/) |
 | Fonts | Inter, Fraunces, Cairo — via `next/font/google` |
-| Hosting | [Vercel](https://vercel.com/) |
+| Database | SQLite via [Prisma](https://www.prisma.io/) (services, blog posts, videos, before/after cases, reviews) |
+| Auth | Custom session auth — `bcryptjs` + `jose` (signed JWT cookie) |
+| Hosting | VPS (Node.js + PM2 + Nginx) — see [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md) |
 
 ## Getting Started
 
@@ -78,6 +80,9 @@ Clean Home Kuwait is a conversion-focused landing page and micro-site for a resi
 git clone https://github.com/MdShohag07/kuwait-cleaning-services.git
 cd kuwait-cleaning-services
 npm install
+cp .env.example .env   # then fill in AUTH_SECRET + seed admin credentials
+npx prisma migrate dev
+npm run db:seed
 ```
 
 ### Development
@@ -86,7 +91,7 @@ npm install
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000).
+Open [http://localhost:3000](http://localhost:3000), and sign in to the admin panel at [http://localhost:3000/admin/login](http://localhost:3000/admin/login) with the `SEED_OWNER_EMAIL`/`SEED_OWNER_PASSWORD` you set in `.env`.
 
 ### Production build
 
@@ -109,34 +114,58 @@ kuwait-cleaning-services/
 │   ├── page.tsx              # Homepage — composes all sections
 │   ├── layout.tsx            # Root layout, fonts, SEO metadata, JSON-LD
 │   ├── globals.css           # Tailwind v4 theme tokens & base styles
-│   └── blog/
-│       ├── page.tsx          # Blog index
-│       └── [slug]/page.tsx   # Individual blog post
+│   ├── blog/
+│   │   ├── page.tsx          # Blog index
+│   │   └── [slug]/page.tsx   # Individual blog post
+│   └── admin/                 # Password-protected admin panel (owner/admin roles)
+│       ├── (auth)/login/      # Login page
+│       └── (dashboard)/       # Sidebar shell + Services/Blogs/Videos/
+│                               # Before-After/Reviews/Settings CRUD screens
 ├── components/                # One component per section (Hero, Services,
 │                               # Why, Process, Video, BeforeAfter, Stats,
 │                               # Testimonials, Blog, FAQ, BookingContact,
 │                               # Navbar, Footer, MobileHookBar, LangSwitch…)
+│   └── admin/                 # Shared admin form widgets
 ├── lib/
-│   ├── site.ts                # Single source of truth for all site content
-│   └── i18n.tsx                # English/Arabic language context + RTL handling
-├── public/images/              # Service, hero, and before/after photography
-└── docs/                       # README assets
+│   ├── site.ts                 # Static content that isn't admin-managed (phone,
+│   │                            # nav, FAQs, booking config, stats…)
+│   ├── i18n.tsx                 # English/Arabic language context + RTL handling
+│   ├── prisma.ts                # Prisma client singleton
+│   ├── auth.ts                  # Session/JWT helpers
+│   ├── uploads.ts               # Image upload handling for admin forms
+│   ├── data/                    # Read helpers (DB → typed data for public pages)
+│   └── actions/                 # Server Actions — all admin CRUD + review submission
+├── prisma/
+│   ├── schema.prisma            # Database schema
+│   └── seed.ts                  # One-time bootstrap seed (run via `npm run db:seed`)
+├── proxy.ts                     # Route protection for /admin/**
+├── public/images/                # Service, hero, and before/after photography
+├── public/uploads/                # Images uploaded through the admin panel (gitignored)
+└── docs/                          # README assets + deployment guide
 ```
 
 ## Content & Configuration
 
-This project is designed so that **non-technical edits never require touching a component**:
-
-- **All content** — brand name, phone/WhatsApp numbers, services & pricing, testimonials, FAQs, blog posts, stats — lives in [`lib/site.ts`](lib/site.ts).
+- **Services, blog posts, videos, before/after cases, and customer reviews** are managed through the **admin panel** at `/admin` (see below) — they're stored in the database, not in source files.
+- **Everything else** — brand name, phone/WhatsApp numbers, nav links, FAQs, "why us" points, booking form options, stats — stays in [`lib/site.ts`](lib/site.ts).
 - **Colors, fonts, and radii** are design tokens in the `@theme` block of [`app/globals.css`](app/globals.css).
-- **Translations** for the language switcher live in [`lib/i18n.tsx`](lib/i18n.tsx).
-- **Images** are served from `public/images/`; external image hosts must be allow-listed in [`next.config.ts`](next.config.ts).
+- **Translations** for the language switcher and static section headings live in [`lib/i18n.tsx`](lib/i18n.tsx).
+- **Images** uploaded via the admin panel go to `public/uploads/`; static images ship from `public/images/`. External image hosts must be allow-listed in [`next.config.ts`](next.config.ts).
+
+## Admin Panel
+
+Sign in at `/admin/login` with either the seeded Owner or Admin account (both have identical full access — create/edit/delete everything). From there you can manage:
+
+- **Services** — name, description, features, pricing note, cover image, "most booked" flag, display order
+- **Blogs** — full posts with bilingual title/excerpt/body, author byline, cover image
+- **Videos** — the YouTube video gallery
+- **Before / After** — transformation case studies with paired images
+- **Reviews** — customer-submitted reviews land here as **Pending**; approve, reject, edit, or delete them. Only Approved reviews show on the public site.
+- **Settings** — change your own password
 
 ## Deployment
 
-The site is deployed on [Vercel](https://vercel.com/) and auto-deploys from the `main` branch.
-
-**Live URL:** [https://kuwait-cleaning-services.vercel.app/](https://kuwait-cleaning-services.vercel.app/)
+This site now includes a database (SQLite) and locally-stored uploaded images, so it needs a host with a persistent filesystem and a long-running Node process — a **VPS**, not shared/cPanel hosting or a serverless platform like Vercel. See **[docs/DEPLOYMENT.md](docs/DEPLOYMENT.md)** for the full step-by-step guide (Hostinger/GoDaddy VPS, PM2, Nginx, first-time setup, and subsequent deploys).
 
 ## License
 

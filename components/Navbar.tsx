@@ -79,7 +79,7 @@ export function Navbar() {
           <a href={`tel:${site.phone}`} className="hidden items-center gap-3 rounded-full border border-line bg-surface py-2 pl-4 pr-2 shadow-soft transition hover:-translate-y-0.5 sm:flex">
             <span className="hidden flex-col leading-tight lg:flex">
               <span className="text-[.66rem] uppercase tracking-wider text-muted-2">{t.cta.callNow}</span>
-              <span className="text-sm font-semibold">{site.phoneDisplay}</span>
+              <span className="ltr-text text-sm font-semibold">{site.phoneDisplay}</span>
             </span>
             <span className="grid h-[38px] w-[38px] place-items-center rounded-full bg-grad text-white"><PhoneIcon /></span>
           </a>

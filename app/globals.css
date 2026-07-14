@@ -80,3 +80,10 @@ html[dir="rtl"] em,
 html[dir="rtl"] .italic {
   font-style: normal;
 }
+/* Phone numbers & emails must stay LTR and unreordered, even inside RTL flow.
+   Scoped to a dedicated class (not the whole tel:/mailto: link) so it doesn't
+   flip the flex order of icon+text buttons in RTL. */
+.ltr-text {
+  direction: ltr;
+  unicode-bidi: isolate;
+}

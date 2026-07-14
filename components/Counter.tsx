@@ -32,7 +32,7 @@ export function Counter({
 
   return (
     <span ref={ref}>
-      {display.toLocaleString()}
+      {display.toLocaleString("en-US")}
       {suffix}
     </span>
   );

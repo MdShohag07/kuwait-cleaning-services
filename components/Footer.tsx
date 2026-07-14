@@ -3,7 +3,7 @@ import type { ComponentType } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { site, waLink } from "@/lib/site";
-import { useLang } from "@/lib/i18n";
+import { useLang, type Bi } from "@/lib/i18n";
 
 const ease = "easeOut" as const;
 
@@ -50,7 +50,7 @@ const WaIcon = () => (
 
 const waHref = waLink("Hi, I'd like to book a cleaning service.");
 
-const NavSection = ({ title, links }: { title: string; links: { label: string; href: string }[] }) => (
+const NavSection = ({ title, links }: { title: string; links: { label: string; href: string; ltr?: boolean }[] }) => (
   <motion.div variants={itemVariants} className="flex flex-col gap-2">
     <h5 className="mb-2 border-b border-line-soft pb-1 text-xs font-semibold uppercase tracking-wider text-muted-2 transition-colors duration-300 hover:text-ink">
       {title}
@@ -65,7 +65,7 @@ const NavSection = ({ title, links }: { title: string; links: { label: string; h
         whileHover={{ x: 8, transition: { type: "spring", stiffness: 300, damping: 20 } }}
         className="group relative font-sans text-xs text-muted transition-colors duration-300 hover:text-ink md:text-sm"
       >
-        <span className="relative">
+        <span className={`relative ${l.ltr ? "ltr-text" : ""}`}>
           {l.label}
           <motion.span
             className="absolute bottom-0 left-0 h-0.5 bg-acc"
@@ -96,14 +96,14 @@ const QuickAction = ({ href, label, Icon }: { href: string; label: string; Icon:
   </motion.a>
 );
 
-export function Footer() {
+export function Footer({ services }: { services: { name: Bi }[] }) {
   const { t, tr } = useLang();
 
   const footerData = {
     sections: [
       {
         title: t.footer.sectionServices,
-        links: site.services.map((s) => ({ label: tr(s.name), href: "/#services" })),
+        links: services.map((s) => ({ label: tr(s.name), href: "/#services" })),
       },
       {
         title: t.footer.sectionCompany,
@@ -125,8 +125,8 @@ export function Footer() {
       {
         title: t.footer.sectionContact,
         links: [
-          { label: site.phoneDisplay, href: `tel:${site.phone}` },
-          { label: site.email, href: `mailto:${site.email}` },
+          { label: site.phoneDisplay, href: `tel:${site.phone}`, ltr: true },
+          { label: site.email, href: `mailto:${site.email}`, ltr: true },
           { label: `${tr(site.city)}, ${t.blog.kuwaitSuffix}`, href: "/#contact" },
         ],
       },

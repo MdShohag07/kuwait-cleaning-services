@@ -3,6 +3,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { site, waLink } from "@/lib/site";
 import { useLang } from "@/lib/i18n";
+import type { ServiceItem } from "@/lib/data/services";
 import { Container } from "./Container";
 
 const ease = [0.16, 1, 0.3, 1] as const;
@@ -29,7 +30,7 @@ const PinIcon = () => (
 const fieldCls =
   "w-full rounded-[11px] border border-line bg-surface-2 px-4 py-3.5 text-sm transition focus:border-acc focus:bg-acc/5 focus:outline-none";
 
-export function BookingContact() {
+export function BookingContact({ services }: { services: ServiceItem[] }) {
   const { t, tr } = useLang();
   const [service, setService] = useState(0);
   const [size, setSize] = useState(0);
@@ -39,7 +40,7 @@ export function BookingContact() {
 
   const bookingWa = () => {
     const msg =
-      `${t.booking.waHi.replace("{name}", site.name)} ${tr(site.services[service].name)}` +
+      `${t.booking.waHi.replace("{name}", site.name)} ${tr(services[service].name)}` +
       ` | ${t.booking.waSize} ${tr(b.sizes[size].label)}` +
       ` | ${date || t.booking.waFlexibleDate} ${t.booking.waAt} ${time}` +
       ` | ${tr(b.freqs[freq].label)}`;
@@ -80,8 +81,8 @@ export function BookingContact() {
 
             <label className="mb-2 block text-xs text-muted">{t.booking.serviceLabel}</label>
             <select className={fieldCls} value={service} onChange={(e) => setService(Number(e.target.value))}>
-              {site.services.map((s, i) => (
-                <option key={tr(s.name)} value={i}>
+              {services.map((s, i) => (
+                <option key={s.id} value={i}>
                   {tr(s.name)}
                 </option>
               ))}
@@ -149,7 +150,7 @@ export function BookingContact() {
               <a href={`tel:${site.phone}`} className="mb-5 flex items-start gap-3.5">
                 <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl border border-acc/20 bg-acc/[.08] text-acc"><PhoneIcon /></span>
                 <span>
-                  <b className="block text-sm">{site.phoneDisplay}</b>
+                  <b className="ltr-text block text-sm">{site.phoneDisplay}</b>
                   <span className="text-sm text-muted">{t.booking.callSub}</span>
                 </span>
               </a>
@@ -157,7 +158,7 @@ export function BookingContact() {
               <a href={`mailto:${site.email}`} className="mb-5 flex items-start gap-3.5">
                 <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl border border-acc/20 bg-acc/[.08] text-acc"><MailIcon /></span>
                 <span>
-                  <b className="block text-sm">{site.email}</b>
+                  <b className="ltr-text block text-sm">{site.email}</b>
                   <span className="text-sm text-muted">{t.booking.emailSub}</span>
                 </span>
               </a>

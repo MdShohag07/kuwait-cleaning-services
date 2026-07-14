@@ -3,8 +3,8 @@ import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { site } from "@/lib/site";
 import { useLang } from "@/lib/i18n";
+import type { BlogPost as BlogPostType } from "@/lib/data/blogs";
 import { Container } from "./Container";
 
 const ease = [0.16, 1, 0.3, 1] as const;
@@ -26,9 +26,8 @@ const Arrow = ({ dir = "right" }: { dir?: "left" | "right" }) => (
   </svg>
 );
 
-export function Blog() {
+export function Blog({ blogs }: { blogs: BlogPostType[] }) {
   const { t, tr } = useLang();
-  const blogs = site.blogs;
   const [active, setActive] = useState(0);
   const trackRef = useRef<HTMLDivElement>(null);
   const lock = useRef(false);
@@ -54,6 +53,8 @@ export function Blog() {
     el.addEventListener("wheel", onWheel, { passive: false });
     return () => el.removeEventListener("wheel", onWheel);
   }, [active, blogs.length]);
+
+  if (blogs.length === 0) return null;
 
   return (
     <section id="blog" className="overflow-hidden bg-surface py-28">

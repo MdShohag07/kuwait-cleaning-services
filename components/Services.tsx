@@ -3,6 +3,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { site } from "@/lib/site";
 import { useLang } from "@/lib/i18n";
+import type { ServiceItem } from "@/lib/data/services";
 import { Container } from "./Container";
 
 const ease = [0.16, 1, 0.3, 1] as const;
@@ -18,7 +19,7 @@ const PhoneIcon = () => (
   </svg>
 );
 
-export function Services() {
+export function Services({ services }: { services: ServiceItem[] }) {
   const { t, tr, trList } = useLang();
   return (
     <section id="services" className="py-28">
@@ -44,7 +45,7 @@ export function Services() {
 
         {/* cards */}
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {site.services.map((s, i) => (
+          {services.map((s, i) => (
             <motion.article
               key={tr(s.name)}
               initial={{ opacity: 0, y: 36 }}
@@ -105,7 +106,7 @@ export function Services() {
 
         <p className="mt-8 text-center text-sm text-muted">
           {t.services.helpPre}{" "}
-          <a href={`tel:${site.phone}`} className="font-semibold text-acc">
+          <a href={`tel:${site.phone}`} className="ltr-text font-semibold text-acc">
             {site.phoneDisplay}
           </a>{" "}
           {t.services.helpPost}

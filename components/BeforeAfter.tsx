@@ -3,6 +3,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { site } from "@/lib/site";
 import { useLang } from "@/lib/i18n";
+import type { BeforeAfterCaseItem } from "@/lib/data/beforeAfter";
 import { Container } from "./Container";
 
 const ease = [0.16, 1, 0.3, 1] as const;
@@ -17,9 +18,8 @@ const item = {
   show: { opacity: 1, y: 0, transition: { duration: 0.5, ease } },
 };
 
-export function BeforeAfter() {
+export function BeforeAfter({ cases }: { cases: BeforeAfterCaseItem[] }) {
   const { t, tr } = useLang();
-  const cases = site.beforeAfter.cases;
 
   return (
     <section id="results" className="bg-surface-2 py-28">
@@ -51,7 +51,7 @@ export function BeforeAfter() {
         >
           {cases.map((c) => (
             <motion.article
-              key={tr(c.label)}
+              key={c.id}
               variants={item}
               className="overflow-hidden rounded-2xl border border-line bg-surface shadow-soft"
             >
