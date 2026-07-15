@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { site, waLink } from "@/lib/site";
 import { useLang } from "@/lib/i18n";
@@ -37,6 +37,11 @@ export function BookingContact({ services }: { services: ServiceItem[] }) {
   const [freq, setFreq] = useState(0);
   const [date, setDate] = useState("");
   const [time, setTime] = useState(b.times[0]);
+  const [minDate, setMinDate] = useState<string | undefined>(undefined);
+
+  useEffect(() => {
+    setMinDate(new Date().toISOString().split("T")[0]);
+  }, []);
 
   const bookingWa = () => {
     const msg =
@@ -102,7 +107,7 @@ export function BookingContact({ services }: { services: ServiceItem[] }) {
                   type="date"
                   className={fieldCls}
                   value={date}
-                  min={new Date().toISOString().split("T")[0]}
+                  min={minDate}
                   onChange={(e) => setDate(e.target.value)}
                 />
               </div>

@@ -206,7 +206,10 @@ export function Footer({ services }: { services: { name: Bi }[] }) {
               </div>
 
               <div className="text-left md:text-right">
-                <p className="mb-2 text-xs text-muted-2 transition-colors duration-300 hover:text-ink md:mb-3 md:text-sm">
+                <p
+                  className="mb-2 text-xs text-muted-2 transition-colors duration-300 hover:text-ink md:mb-3 md:text-sm"
+                  suppressHydrationWarning
+                >
                   {footerData.copyright}
                 </p>
                 <div className="flex gap-2 md:gap-3">

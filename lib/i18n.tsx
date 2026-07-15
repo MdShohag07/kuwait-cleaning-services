@@ -44,6 +44,7 @@ const dict = {
       eyebrowPrefix: "Why",
       h2a: "Built on trust,",
       h2b: "not luck",
+      sub: "A decade of experience, vetted crews, and a guarantee that means something — here's what earns our clients' trust, visit after visit.",
     },
 
     process: {
@@ -216,6 +217,7 @@ const dict = {
       eyebrowPrefix: "لماذا",
       h2a: "نبني الثقة،",
       h2b: "لا نعتمد على الحظ",
+      sub: "خبرة تمتد لعقد كامل، وفرق عمل موثوقة، وضمان له معنى حقيقي — إليك ما يكسب ثقة عملائنا في كل زيارة.",
     },
 
     process: {

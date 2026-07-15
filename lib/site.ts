@@ -27,7 +27,7 @@ export const site = {
     { label: "Blog", href: "/#blog" },
   ],
   images: {
-    hero: "/images/hero/hero-living-room.jpg",
+    hero: "/images/hero/hero-living-roomnew.jpg",
   },
   services: [
     {
